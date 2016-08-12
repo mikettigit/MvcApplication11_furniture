@@ -1,0 +1,22 @@
+﻿@using System.Web.Mvc
+
+@helper Phone()
+{      
+    @System.Configuration.ConfigurationManager.AppSettings["DefaultPhone"];
+}
+
+@helper Email()
+{      
+    @System.Configuration.ConfigurationManager.AppSettings["DefaulEmail"];
+}
+
+@helper Address()
+{
+    @System.Configuration.ConfigurationManager.AppSettings["DefaultAddress"];
+}
+
+@helper Year()
+{      
+    @DateTime.Now.Year
+}
+
