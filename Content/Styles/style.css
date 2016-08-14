@@ -25,6 +25,10 @@ body
 	margin-top: 0 !important;
 }
 
+.error {
+    border-color: red !important;
+}
+
 .wrap { 
 	margin: 0px auto;
 	position: relative;
@@ -1293,6 +1297,7 @@ text-shadow:
   position: fixed;
   top: 50%;
   left: 50%;
+  overflow-y: scroll;
   margin-left: -436px;
   margin-top: -286px;
   z-index: 30;
@@ -1416,6 +1421,7 @@ text-shadow:
   position: fixed;
   top: 50%;
   left: 50%;
+  overflow-y:scroll;
   margin-left: -216px;
   margin-top: -225px;
   z-index: 30;

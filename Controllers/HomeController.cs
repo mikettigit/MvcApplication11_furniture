@@ -34,11 +34,11 @@ namespace MvcApplication11_furniture.Controllers
             {
                 try
                 {
-                    string subject = "Notification";
+                    string subject = "Уведомление с сайта " + HttpContext.Request.Url.Authority;
                     string body = "";
                     Collection<Attachment> attachments = new Collection<Attachment>();
 
-                    string[] AllKeys = ((System.Collections.Specialized.NameValueCollection)(collection)).AllKeys;
+                    var AllKeys = ((System.Collections.Specialized.NameValueCollection)(collection)).AllKeys.Where(s => !s.Contains("page-name") && !s.Equals("2fea14ff-d8e3-42c1-a230-3917b7a640c9"));
                     foreach (var key in AllKeys)
                     {
                         body += key + ": " + collection[key] + System.Environment.NewLine;
