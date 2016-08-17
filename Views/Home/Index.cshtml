@@ -118,16 +118,14 @@
                                 <i class="prev1__in1 x_prev"></i>
 
                                 <div class="slider1__in1">
-                                    <div class="slide_item">
-                                        <div class="slide2">
-                                            <img src="/Content/images/gallery/901.jpg" />
-                                        </div>
-                                    </div>
-                                    <div class="slide_item">
-                                        <div class="slide2">
-                                            <img src="/Content/images/gallery/930-1.jpg" />
-                                        </div>
-                                    </div>
+                                    @{
+                                        string path = "/Content/images/gallery/kuhni/klassika/";
+                                        string[] filenames = Directory.GetFiles(Server.MapPath(path), "*.jpg");
+                                        foreach (var filename in filenames)
+                                        {
+                                            <div class="slide_item"><div class="slide2"><img src="@(path + Path.GetFileName(filename))" /></div></div>
+                                        }
+                                    }
                                 </div>
 
                                 <script>
@@ -147,13 +145,8 @@
                         <div class="mat_right">
                             <h2 class="mat_slide_head">Классика</h2>
 
-                            <span class="katalog_desc">Текст кухни Классика.</span>
-
-                            <div class="mat_triggers">
-                                <span style="background: url(Content/images/color_3.png) no-repeat left">Свойство 1</span>
-                                <span style="background: url(Content/images/hardness_1.png) no-repeat left">Свойство 2</span>
-                                <span style="background: url(Content/images/price_2.png) no-repeat left">Свойство 3</span>
-                            </div>
+                            <span class="katalog_desc">Классические кухни наделены особым очарованием, они красивы, удобны и функциональны, при этом неплохо вписываются в интерьер маленькой квартиры, не говоря про городской коттедж или загородный дом.</span>
+                            <span class="katalog_desc">Классике присуща симметрия во всём, поэтому на Вашей классической кухне должны преобладать прямоугольные строгие формы и чёткие прямые линии. Центром симметрии, как правило, является плита, которая оформляется в виде камина.</span>
 
                             <div id="button2">
                                 <a onclick="$('input:hidden[name=page-name-2]').val($(this).parents('.mat_right').find('h2').text());" class="open-call-back-popup fon3" href="#">Расчет стоимости</a>
@@ -167,16 +160,14 @@
                                 <i class="prev1__in2 x_prev"></i>
 
                                 <div class="slider1__in2">
-                                    <div class="slide_item">
-                                        <div class="slide2">
-                                            <img src="/Content/images/gallery/vERXycosSCA.jpg" />
-                                        </div>
-                                    </div>
-                                    <div class="slide_item">
-                                        <div class="slide2">
-                                            <img src="/Content/images/gallery/pop29dk3nZg-1.jpg" />
-                                        </div>
-                                    </div>
+                                    @{
+                                        path = "/Content/images/gallery/kuhni/modern/";
+                                        filenames = Directory.GetFiles(Server.MapPath(path), "*.jpg");
+                                        foreach (var filename in filenames)
+                                        {
+                                            <div class="slide_item"><div class="slide2"><img src="@(path + Path.GetFileName(filename))" /></div></div>
+                                        }
+                                    }
                                 </div>
 
                                 <script>
@@ -196,13 +187,8 @@
                         <div class="mat_right">
                             <h2 class="mat_slide_head">Модерн</h2>
 
-                            <span class="katalog_desc">Текст кухни Модерн</span>
-
-                            <div class="mat_triggers">
-                                <span style="background: url(Content/images/color_3.png) no-repeat left">Пункт 1</span>
-                                <span style="background: url(Content/images/hardness_1.png) no-repeat left">Пункт 2</span>
-                                <span style="background: url(Content/images/price_2.png) no-repeat left">Пункт 3</span>
-                            </div>
+                            <span class="katalog_desc">Мебель в стиле «Модерн» отличают чистые линии, яркие цвета, нестандартные решения. Такие кухни иногда называют инновационными, потому что при их создании используют самые новые материалы и технологии.</span>
+                            <span class="katalog_desc">Продуманность и рациональность модерна делает его уместным в кухне любой площади. Современная эклектика, желание брать из каждого стиля лучшее и воплощать его в рамках одной кухни — это и есть кухня в стиле «Модерн».</span>
 
                             <div id="button2">
                                 <a onclick="$('input:hidden[name=page-name-2]').val($(this).parents('.mat_right').find('h2').text());" class="open-call-back-popup fon3" href="#">Расчет стоимости</a>
@@ -217,16 +203,13 @@
                                 <i class="prev1__in3 x_prev"></i>
 
                                 <div class="slider1__in3">
-                                    <div class="slide_item">
-                                        <div class="slide2">
-                                            <img src="/Content/images/gallery/2.jpg" />
-                                        </div>
-                                    </div>
-                                    <div class="slide_item">
-                                        <div class="slide2">
-                                            <img src="/Content/images/gallery/Kitchen-countertop-2013-improvised-003.jpg" />
-                                        </div>
-                                    </div>
+                                    @{
+                                        path = "/Content/images/gallery/kuhni/vintaj/";
+                                        filenames = Directory.GetFiles(Server.MapPath(path), "*.jpg");
+                                        foreach (var filename in filenames){
+                                            <div class="slide_item"><div class="slide2"><img src="@(path + Path.GetFileName(filename))" /></div></div>    
+                                        }
+                                    }
                                 </div>
 
                                 <script>
@@ -246,13 +229,8 @@
                         <div class="mat_right">
                             <h2 class="mat_slide_head">Винтаж</h2>
 
-                            <span class="katalog_desc">Текст кухни Винтаж</span>
-
-                            <div class="mat_triggers">
-                                <span style="background: url(Content/images/color_3.png) no-repeat left">Пункт 1</span>
-                                <span style="background: url(Content/images/hardness_1.png) no-repeat left">Пункт 2</span>
-                                <span style="background: url(Content/images/price_2.png) no-repeat left">Пункт 3</span>
-                            </div>
+                            <span class="katalog_desc">Стиль «Винтаж» визуально довольно прост, но все же есть в его оформлении нечто такое, что непременно цепляет душу. Возможно, таким своего рода якорем является светлая палитра и простоватые шкафы с претензией на классику с филенками и скромными резными вставками. Как бы там ни было, а смотреть, и тем более находиться на кухне в стиле «Винтаж» очень приятно.</span>
+                            <span class="katalog_desc">Наиболее подходящими оттенками для винтажной кухни считаются светлые пастельные тона, такие как бежевые, белые, карамельные, серые, нежно-голубые, лавандовые, салатные и бледно-розовые.</span>
 
                             <div id="button2">
                                 <a onclick="$('input:hidden[name=page-name-2]').val($(this).parents('.mat_right').find('h2').text());" class="open-call-back-popup fon3" href="#">Расчет стоимости</a>
@@ -267,16 +245,14 @@
                                 <i class="prev1__in4 x_prev"></i>
 
                                 <div class="slider1__in4">
-                                    <div class="slide_item">
-                                        <div class="slide2">
-                                            <img src="/wp-content/uploads/2016/05/1b.jpg" />
-                                        </div>
-                                    </div>
-                                    <div class="slide_item">
-                                        <div class="slide2">
-                                            <img src="/wp-content/uploads/2016/05/6l8Xb1qAPXc.jpg" />
-                                        </div>
-                                    </div>
+                                    @{
+                                        path = "/Content/images/gallery/kuhni/hitec/";
+                                        filenames = Directory.GetFiles(Server.MapPath(path), "*.jpg");
+                                        foreach (var filename in filenames)
+                                        {
+                                            <div class="slide_item"><div class="slide2"><img src="@(path + Path.GetFileName(filename))" /></div></div>
+                                        }
+                                    }
                                 </div>
 
                                 <script>
@@ -296,13 +272,8 @@
                         <div class="mat_right">
                             <h2 class="mat_slide_head">Хайтек</h2>
 
-                            <span class="katalog_desc">Текст кухни Хайтек</span>
-
-                            <div class="mat_triggers">
-                                <span style="background: url(Content/images/color_3.png) no-repeat left">Пункт 1</span>
-                                <span style="background: url(Content/images/hardness_1.png) no-repeat left">Пункт 2</span>
-                                <span style="background: url(Content/images/price_2.png) no-repeat left">Пункт 3</span>
-                            </div>
+                            <span class="katalog_desc">Хай-тек относят к ультрасовременным стилям. Стилю характерны стремительные, прямые линии, обилие стеклянных и металлических деталей.</span>
+                            <span class="katalog_desc">Материалы – стекло, металл, натуральное дерево. Формы и пропорции мебели тщательно продуманы. Полное отсутствие украшений компенсируется «работой» материала: игрой света на стекле, блеском хромированных и металлических поверхностей политурой древесины и т.д.</span>
 
                             <div id="button2">
                                 <a onclick="$('input:hidden[name=page-name-2]').val($(this).parents('.mat_right').find('h2').text());" class="open-call-back-popup fon3" href="#">Расчет стоимости</a>
@@ -467,16 +438,14 @@
                                 <i class="prev3__in1 x_prev"></i>
 
                                 <div class="slider3__in1">
-                                    <div class="slide_item">
-                                        <div class="slide2">
-                                            <img src="/wp-content/uploads/2016/05/32561848__2.jpg" />
-                                        </div>
-                                    </div>
-                                    <div class="slide_item">
-                                        <div class="slide2">
-                                            <img src="/wp-content/uploads/2016/05/17.jpg" />
-                                        </div>
-                                    </div>
+                                    @{
+                                        path = "/Content/images/gallery/detskie/";
+                                        filenames = Directory.GetFiles(Server.MapPath(path), "*.jpg");
+                                        foreach (var filename in filenames)
+                                        {
+                                            <div class="slide_item"><div class="slide2"><img src="@(path + Path.GetFileName(filename))" /></div></div>
+                                        }
+                                    }
                                 </div>
 
                                 <script>
@@ -532,16 +501,14 @@
                                 <i class="prev4__in1 x_prev"></i>
 
                                 <div class="slider4__in1">
-                                    <div class="slide_item">
-                                        <div class="slide2">
-                                            <img src="/wp-content/uploads/2016/05/655655.jpg" />
-                                        </div>
-                                    </div>
-                                    <div class="slide_item">
-                                        <div class="slide2">
-                                            <img src="/wp-content/uploads/2016/05/f_minipicture_id55.jpg" />
-                                        </div>
-                                    </div>
+                                    @{
+                                        path = "/Content/images/gallery/gostinye/";
+                                        filenames = Directory.GetFiles(Server.MapPath(path), "*.jpg");
+                                        foreach (var filename in filenames)
+                                        {
+                                            <div class="slide_item"><div class="slide2"><img src="@(path + Path.GetFileName(filename))" /></div></div>
+                                        }
+                                    }
                                 </div>
 
                                 <script>
@@ -754,7 +721,7 @@
 
 
                         <article class="slider_galery">
-                            <div class="x_slider_2">
+                            <div class="x_slider_2"
                                 <i class="next_3_1 x_next_2"></i>
                                 <i class="prev_3_1 x_prev_2"></i>
 
@@ -955,24 +922,17 @@
         <h1 class="slide_head">Эргономика и функциональность</h1>
 
         <span class="trig_text">
-            При оформлении кухни, гостинной или гардеробной требования эргономики и функциональности выходят на первый план. Важно, чтобы пользоваться мебелью было по­настоящему удобно. Именно поэтому проектирование корпусной мебели на заказ выполняется по специальным правилам.
-        </span>
-        <span class="trig_text" style="margin-top:20px;">
-            На эргономику мебели влияют следующие факторы:
-
-            расположение функциональных зон относительно друг друга;
-
-            геометрические параметры мебели (размеры рабочих поверхностей, высота расположения столешниц и ящиков и т.п.);
-
-            наполнение мебели с учетом функционального зонирования.
+            При оформлении кухни, гостиной или гардеробной требования эргономики и функциональности выходят на первый план. Важно, чтобы пользоваться мебелью было по-настоящему удобно. Именно поэтому проектирование корпусной мебели на заказ выполняется по специальным правилам. На эргономику мебели влияют следующие факторы: расположение функциональных зон относительно друг друга; геометрические параметры мебели (размеры рабочих поверхностей, высота расположения столешниц и ящиков и т.п.); наполнение мебели с учетом функционального зонирования. 
         </span>
 
-        <span class="trig_text" style="margin-top:20px;">
-            Размеры отдельных предметов мебели на заказ подбираются в соответствии с габаритами самого помещения. Это делается следующим образом. Габариты помещения учитываются таким образом, чтобы после установки мебели оставалось достаточно свободного пространства.  Требования заказчика к размерам касаются двух основных моментов: вместимости шкафов и полок, а также высоты рабочих поверхностей. Внутренний объем полок и шкафов рассчитывается в соответствии с тем, какое колличество  вещей, инвентаря или  посуды и продуктов, будет храниться. Высота рабочих поверхностей определяется в соответствии с ростом того, кто будет пользоваться мебелью.
+        <span class="trig_text" style="margin-top:20px; text-align:center;">
+            <img src="/Content/images/ill1.jpg" style="height:200px;"/>
+            <img src="/Content/images/ill2.jpg" style="height:200px;" />
+            <img src="/Content/images/ill3.jpg" style="height:200px;" />
         </span>
 
         <span class="trig_text" style="margin-top: 20px; margin-bottom:40px;">
-            Создать по­настоящему эргономичную и комфортную мебель можно только при индивидуальном проектировании. В компании «Мебель НЕКСТ» оно выполняется таким образом, чтобы учесть не только требования и пожелания заказчика, но и техническую сторону вопроса: расположение розеток, вытяжек, выводов канализации, точек подключения к водопроводу и т.п. Только в этом случае можно гарантировать, что готовить еду на кухне будет действительно удобно.
+            Создать по-настоящему эргономичную и комфортную мебель можно только при индивидуальном проектировании.  Компания «Мебель НЕКСТ» учитывает не только требования и пожелания заказчика, но и техническую сторону вопроса: расположение розеток, вытяжек, выводов канализации, точек подключения к водопроводу и т.п. 
         </span>
 
         <div id="button3" style="height:63px;">
@@ -1175,10 +1135,10 @@
 
     <div class="calc_left">
         <span class="calc_desc_head">Стоимость мебели на заказ всегда индивидуальна.</span>
-        <span class="calc_desc_text" style="text-align:justify;">Чтобы рассчитать примерную стоимость корпусной мебели нам необходимо знать параметры и размеры  помещения, а так же Ваш выбор материалов и комплектующих.</span>
+        <span class="calc_desc_text" style="text-align:justify;">Чтобы рассчитать стоимость Вашей мебели нам необходимо знать размеры стен, по которым будет располагаться будущее изделие, а так же информацию по наличию труб и колонок.</span>
 
         <span class="calc_desc_head">Изготовление по вашим фото или эскизам</span>
-        <span class="calc_desc_text" style="text-align:justify;">Сделаем любую корпусную мебель, которую вы найдете в интернете. Присылайте фотографии или рисунки, мебели которые вам нравятся а так же свои пожелания.  Мы подготовим эскиз и посчитаем стоимость изготовления   Если у вас есть уже готовый проект то присылаете его нам для расчета стоимости.</span>
+        <span class="calc_desc_text" style="text-align:justify;">Сделаем любую корпусную мебель, которую вы найдете в интернете. Присылайте фотографии или рисунки мебели, которые вам понравились, а так же свои пожелания. Мы подготовим эскиз и посчитаем стоимость. Если у вас есть уже готовый проект, то присылайте его нам для расчета стоимости.</span>
     </div>
 
     <div class="calc_right">
@@ -1211,7 +1171,7 @@
                         </div>
                         <div class="big-button open-thank">
                             <div class="fonbutton">
-                                <input type="submit" value="Оставить заявку" class="wpcf7-form-control wpcf7-submit" />
+                                <input type="submit" value="Отправить заявку" class="wpcf7-form-control wpcf7-submit" />
                             </div>
                         </div>
 
@@ -1338,7 +1298,7 @@
     <p style="display: inline-block; float: left;">
         <span class="wpcf7-form-control-wrap phone">
             <input type="file" style="display:none;" />
-            <input type="text" name="" value="" style="width:150px;" size="40" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required="true" aria-invalid="false" placeholder="Имя файла" readonly />
+            <input type="text" name="" value="" style="width:150px;" size="40" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required="true" aria-invalid="false" placeholder="Прикрепить файл" readonly />
         </span>
     </p>
     <div class="big-button" style="width:40px; height:40px; display:inline-block">
