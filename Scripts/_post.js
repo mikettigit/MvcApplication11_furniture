@@ -80,7 +80,7 @@
             return false;
         }
         file_index++;
-        newfile = $(".templatefile").clone().removeClass("templatefile").show();
+        var newfile = $(".templatefile").clone().removeClass("templatefile").show();
         newfile.find("input[type=file]").attr("name", "file" + file_index);
         newfile.find("input[type=text]").click(function () {
             var fileinput = $(this).parent().find("input[type=file]");

@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Optimization;
 
-namespace MvcApplication11_furniture
+namespace Helpers
 {
     public class BundleConfig
     {

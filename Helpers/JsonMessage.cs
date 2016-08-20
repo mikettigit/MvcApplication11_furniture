@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MvcApplication11_furniture.Helpers
+namespace Helpers.Helpers
 {
     public class JsonMessage
     {

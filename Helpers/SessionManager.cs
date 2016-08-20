@@ -2,7 +2,7 @@
 using System.Threading;
 using System.Web.SessionState;
 
-namespace MvcApplication11_furniture.Helpers
+namespace Helpers.Helpers
 {
     public class SessionManager
     {

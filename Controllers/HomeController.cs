@@ -1,4 +1,4 @@
-﻿using MvcApplication11_furniture.Helpers;
+﻿using Helpers.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -8,7 +8,7 @@ using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
 
-namespace MvcApplication11_furniture.Controllers
+namespace Helpers.Controllers
 {
     public class HomeController : Controller
     {
