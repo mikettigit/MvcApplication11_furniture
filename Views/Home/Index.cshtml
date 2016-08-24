@@ -689,17 +689,22 @@
                                 <i class="next_3_1 x_next_2"></i>
                                 <i class="prev_3_1 x_prev_2"></i>
                                 <div class="slider_3_1">
-                                    <div class="slide_item">
-                                        <div class="slide3">
-                                            <img src="/wp-content/uploads/2016/05/32561848__2.jpg" />
-                                        </div>
-                                    </div>
+                                    @{
+                                        path = "/Content/images/gallery2/stol/plastik/";
+                                        filenames = Directory.GetFiles(Server.MapPath(path), "*.jpg").OrderBy(f => f);
+                                        foreach (var filename in filenames)
+                                        {
+                                            Helpers.Resizer.Proceed(filename);
+                                            <div class="slide_item"><div class="slide3"><img src="@(path + Path.GetFileName(filename))" /></div></div>
+                                        }
+                                    }
                                 </div>
                             </div>
                         </article>
                         <div class="mat_right">
                             <h2 class="mat_slide_head">Пластик</h2>
-                            <span class="katalog_desc">Описание пластик</span>
+                            <span class="katalog_desc">Столешница из пластика – это, в первую очередь, практичность. Такое изделие совершенно не впитывает жидкости, обладает высокой химической устойчивостью, не боится механических повреждений и является абсолютно безопасной при контакте с пищевыми продуктами.</span>\
+                            <span class="katalog_desc">Неоспоримое преимущество столешницы из пластика – дизайнерская вариативность, ведь существует множество оригинальных цветовых решений, декоров и фактур. Кроме того, эти кухонные поверхности отличаются низкой ценой, вследствие чего и получили столь широкое распространение.</span>
                             <div class="mat_triggers"></div>
                         </div>
                     </div>
@@ -775,17 +780,21 @@
                                 <i class="next_4_1 x_next_2"></i>
                                 <i class="prev_4_1 x_prev_2"></i>
                                 <div class="slider_4_1">
-                                    <div class="slide_item">
-                                        <div class="slide3">
-                                            <img src="/wp-content/uploads/2016/05/655655.jpg" />
-                                        </div>
-                                    </div>
+                                    @{
+                                        path = "/Content/images/gallery2/fartuk/plastik/";
+                                        filenames = Directory.GetFiles(Server.MapPath(path), "*.jpg").OrderBy(f => f);
+                                        foreach (var filename in filenames)
+                                        {
+                                            Helpers.Resizer.Proceed(filename);
+                                            <div class="slide_item"><div class="slide3"><img src="@(path + Path.GetFileName(filename))" /></div></div>
+                                        }
+                                    }
                                 </div>
                             </div>
                         </article>
                         <div class="mat_right">
                             <h2 class="mat_slide_head">Пластик на основе МДФ</h2>
-                            <span class="katalog_desc">Описание Пластик на основе МДФ</span>
+                            <span class="katalog_desc">Фартуки из пластика обладают оптимальным соотношением стоимости, практичности и качества. Они устойчивы к воздействию горячего пара и влаги. Их бесспорным достоинством является относительная дешевизна по сравнению с другими аналогами. </span>
                             <div class="mat_triggers"></div>
                         </div>
                     </div>
@@ -796,17 +805,23 @@
                                 <i class="next_4_2 x_next_2"></i>
                                 <i class="prev_4_2 x_prev_2"></i>
                                 <div class="slider_4_2">
-                                    <div class="slide_item">
-                                        <div class="slide3">
-                                            <img src="/wp-content/uploads/2016/05/655655.jpg" />
-                                        </div>
-                                    </div>
+                                    @{
+                                        path = "/Content/images/gallery2/fartuk/steklo/";
+                                        filenames = Directory.GetFiles(Server.MapPath(path), "*.jpg").OrderBy(f => f);
+                                        foreach (var filename in filenames)
+                                        {
+                                            Helpers.Resizer.Proceed(filename);
+                                            <div class="slide_item"><div class="slide3"><img src="@(path + Path.GetFileName(filename))" /></div></div>
+                                        }
+                                    }
                                 </div>
                             </div>
                         </article>
                         <div class="mat_right">
                             <h2 class="mat_slide_head">Стекло с фотопечатью</h2>
-                            <span class="katalog_desc">Описание стекло с фотопечатью</span>
+                            <span class="katalog_desc">Современные технологии фотопечати позволяют нанести на стекло любое изображение по вашему выбору.</span>
+                            <span class="katalog_desc">Уникальные по дизайну стеновые панели делают кухню по-настоящему индивидуальной. </span>
+                            <span class="katalog_desc">Они могут быть любыми: с монохромным тонким изящным графичным рисунком или с полноцветным фото, поражающими сочностью цветов и необычностью сюжета. </span>
                             <div class="mat_triggers"></div>
                         </div>
                     </div>
@@ -817,17 +832,24 @@
                                 <i class="next_4_3 x_next_2"></i>
                                 <i class="prev_4_3 x_prev_2"></i>
                                 <div class="slider_4_3">
-                                    <div class="slide_item">
-                                        <div class="slide3">
-                                            <img src="/wp-content/uploads/2016/05/655655.jpg" />
-                                        </div>
-                                    </div>
+                                    @{
+                                        path = "/Content/images/gallery2/fartuk/kamen/";
+                                        filenames = Directory.GetFiles(Server.MapPath(path), "*.jpg").OrderBy(f => f);
+                                        foreach (var filename in filenames)
+                                        {
+                                            Helpers.Resizer.Proceed(filename);
+                                            <div class="slide_item"><div class="slide3"><img src="@(path + Path.GetFileName(filename))" /></div></div>
+                                        }
+                                    }
                                 </div>
                             </div>
                         </article>
                         <div class="mat_right">
                             <h2 class="mat_slide_head">Искусственный камень</h2>
-                            <span class="katalog_desc">Описание искусственный камень</span>
+                            <span class="katalog_desc">Искусственному камню можно придать абсолютное сходство с любым природным: кварцем, ониксом, вулканическим туфом, мрамором и так далее. Точно так же можно выбрать для отделки материал с характерным «рисунком», но экзотичного цвета.</span>
+                            <span class="katalog_desc">
+                                Искусственный материал – низко пористый, а значит – не впитывает грязь и жир.
+                            </span>
                             <div class="mat_triggers"></div>
                         </div>
                     </div>
@@ -838,17 +860,21 @@
                                 <i class="next_4_4 x_next_2"></i>
                                 <i class="prev_4_4 x_prev_2"></i>
                                 <div class="slider_4_4">
-                                    <div class="slide_item">
-                                        <div class="slide3">
-                                            <img src="/wp-content/uploads/2016/05/655655.jpg" />
-                                        </div>
-                                    </div>
+                                    @{
+                                        path = "/Content/images/gallery2/fartuk/mosaic/";
+                                        filenames = Directory.GetFiles(Server.MapPath(path), "*.jpg").OrderBy(f => f);
+                                        foreach (var filename in filenames)
+                                        {
+                                            Helpers.Resizer.Proceed(filename);
+                                            <div class="slide_item"><div class="slide3"><img src="@(path + Path.GetFileName(filename))" /></div></div>
+                                        }
+                                    }
                                 </div>
                             </div>
                         </article>
                         <div class="mat_right">
                             <h2 class="mat_slide_head">Мозаика</h2>
-                            <span class="katalog_desc">Описание мозаика</span>
+                            <span class="katalog_desc">Фартуки из мозаики -  очень нарядный и выразительный вариант оформления стены на кухне. Мозаика сочных, контрастных цветов сделает интерьер ярким и динамичным. Тонкие переходы разных оттенков одной цветовой гаммы придадут кухне нежности и элегантности.</span>
                             <div class="mat_triggers"></div>
                         </div>
                     </div>
@@ -1489,6 +1515,27 @@
     timeout: 0,
     next: '.next_4_1',
     prev: '.prev_4_1'
+});
+    $('.slider_4_2')
+.cycle({
+    speed: 'slow',
+    timeout: 0,
+    next: '.next_4_2',
+    prev: '.prev_4_2'
+});
+    $('.slider_4_3')
+.cycle({
+    speed: 'slow',
+    timeout: 0,
+    next: '.next_4_3',
+    prev: '.prev_4_3'
+});
+    $('.slider_4_4')
+.cycle({
+    speed: 'slow',
+    timeout: 0,
+    next: '.next_4_4',
+    prev: '.prev_4_4'
 });
     $('.slider_5_1')
 .cycle({

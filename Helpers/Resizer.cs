@@ -9,7 +9,7 @@ namespace Helpers
 {
     public static class Resizer
     {
-        public static void Proceed(string filename)
+        public static void Proceed(string filename, int DefaultWidth = 650)
         {
             FileInfo file = new FileInfo(filename);
             System.Drawing.Image img = null;
@@ -23,7 +23,6 @@ namespace Helpers
                 img.Save(filename);
                 objImage = img;
             }
-            int DefaultWidth = 650;
             if (objImage.Width > DefaultWidth)
             {
                 int h = (int)((float)objImage.Height * DefaultWidth / (float)objImage.Width);

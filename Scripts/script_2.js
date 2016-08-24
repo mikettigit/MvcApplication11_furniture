@@ -1,7 +1,9 @@
 $(document).ready(function(){
     var h_mrg = 0;   // отступ когда шапка уже не видна
-    $(function(){
-        $(window).scroll(function(){
+    $(function () {
+        s();
+        $(window).scroll(s);
+        function s(){
             var top = $(this).scrollTop();
             var elem = $('.nav-menu');
 			var h_hght = 102;
@@ -17,7 +19,7 @@ $(document).ready(function(){
                 elem.css('top', h_mrg);
 				$('.top_menu').toggleClass('top_menu').toggleClass('down_menu');
             }
-        });
+        };
     });
 		
 		
