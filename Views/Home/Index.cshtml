@@ -536,31 +536,34 @@
                                 <i class="prev_1_1 x_prev_2"></i>
 
                                 <div class="slider_1_1">
-                                    <div class="slide_item">
-                                        <div class="slide3">
-                                            <img src="/Content/images/gallery/901.jpg" />
-                                        </div>
-                                    </div>
-                                    <div class="slide_item">
-                                        <div class="slide3">
-                                            <img src="/Content/images/gallery/930-1.jpg" />
-                                        </div>
-                                    </div>
+                                    @{
+                                        path = "/Content/images/gallery2/korpus/";
+                                        filenames = Directory.GetFiles(Server.MapPath(path), "*.jpg").OrderBy(f => f);
+                                        foreach (var filename in filenames)
+                                        {
+                                            Helpers.Resizer.Proceed(filename);
+                                            <div class="slide_item"><div class="slide3"><img src="@(path + Path.GetFileName(filename))" /></div></div>
+                                        }
+                                    }
                                 </div>
                             </div>
                         </article>
 
                         <div class="mat_right">
-                            <h2 class="mat_slide_head">Вариант корпуса 1</h2>
+                            <h2 class="mat_slide_head">Корпус изделия</h2>
 
-                            <span class="katalog_desc">Описание варианта корпуса 1.</span>
-
-                            <div class="mat_triggers">
-                                <span style="background: url(Content/images/color_3.png) no-repeat left">Свойство 1</span>
-                                <span style="background: url(Content/images/hardness_1.png) no-repeat left">Свойство 2</span>
-                                <span style="background: url(Content/images/price_2.png) no-repeat left">Свойство 3</span>
-                            </div>
-
+                            <span class="katalog_desc">Корпус практически всей корпусной мебели выполняется из ламинированной плиты.</span>
+                            <span class="katalog_desc">ЛДСП – это древесная стружка крупной дисперсии, которой придается листовая форма с помощью горячего прессования. </span>
+                            <span class="katalog_desc">Ассортимент расцветок ламинированных плит очень обширен и включает в себя целые коллекции декоров ЛДСП. Цвета подразделяются на несколько групп:<br/>
+                                    - гладкие  однотонные (белый, желтый, голубой);<br />
+                                    - текстурные  однотонные (белый текстурный, алюминий);<br />
+                                    - стандартные древесные тона (бук, ольха, вишня и т.д.);<br />
+                                    - имитация редких пород дерева глянцевые декоры;<br />
+                                    - шпонированные декоры;<br />
+                                    - фантазийные тона с рисунками и узорами.<br />
+                            </span>
+                            <span class="katalog_desc">Торец ламинированной плиты обрабатывается специальной кромкой ПВХ.</span>
+                            <span class="katalog_desc">Кромка ПВХ отличается высокой степенью долговечности и износоустойчивости. Надежно защищает торцы от воздействия влажности и механических повреждений. Такая кромка устойчива к воздействию щелочи, кислоты, жира и солевого раствора, а также к возгоранию.</span>
 
                         </div>
                     </div>
@@ -577,17 +580,25 @@
                                 <i class="next_2_1 x_next_2"></i>
                                 <i class="prev_2_1 x_prev_2"></i>
                                 <div class="slider_2_1">
-                                    <div class="slide_item">
-                                        <div class="slide3">
-                                            <img src="/wp-content/uploads/2016/05/5.png" />
-                                        </div>
-                                    </div>
+                                        @{
+                                            path = "/Content/images/gallery2/fasad/plastik/";
+                                            filenames = Directory.GetFiles(Server.MapPath(path), "*.jpg").OrderBy(f => f);
+                                            foreach (var filename in filenames)
+                                            {
+                                                Helpers.Resizer.Proceed(filename);
+                                                <div class="slide_item"><div class="slide3"><img src="@(path + Path.GetFileName(filename))" /></div></div>
+                                            }
+                                        }
                                 </div>
                             </div>
                         </article>
                         <div class="mat_right">
                             <h2 class="mat_slide_head">Пластик</h2>
-                            <span class="katalog_desc">Описание пластик</span>
+                            <span class="katalog_desc">Пластиковые  мебельные фасады стали по - истине народными, т.к. являются не дорогим, но очень практичным решением мебельного вопроса. </span>
+                            <span class="katalog_desc">Торцы  пластиковых фасадов обрабатываются  кромкой ПВХ или алюминиевым профилем.</span>
+                            <span class="katalog_desc">ПВХ-кромка может стать ярким акцентом, повторяя цвет столешницы, текстиля или фартука, а также может сочетаться с другими деталями интерьера.</span>
+                            <span class="katalog_desc">Алюминиевый профиль не обладает широкой цветовой гаммой, но является более долговечным материалом.</span>
+                            <span class="katalog_desc">Пластиковые фасады не утратят  свой блеск и цвет через годы активной эксплуатации,  не выгорят на солнце, не деформируется от влаги, жары и холода.</span>
                             <div class="mat_triggers"></div>
                         </div>
                     </div>
@@ -714,18 +725,29 @@
                                 <i class="next_3_2 x_next_2"></i>
                                 <i class="prev_3_2 x_prev_2"></i>
                                 <div class="slider_3_2">
-                                    <div class="slide_item">
-                                        <div class="slide3">
-                                            <img src="/wp-content/uploads/2016/05/32561848__2.jpg" />
-                                        </div>
-                                    </div>
+                                    @{
+                                        path = "/Content/images/gallery2/stol/kamen/";
+                                        filenames = Directory.GetFiles(Server.MapPath(path), "*.jpg").OrderBy(f => f);
+                                        foreach (var filename in filenames)
+                                        {
+                                            Helpers.Resizer.Proceed(filename);
+                                            <div class="slide_item"><div class="slide3"><img src="@(path + Path.GetFileName(filename))" /></div></div>
+                                        }
+                                    }
                                 </div>
                             </div>
                         </article>
                         <div class="mat_right">
                             <h2 class="mat_slide_head">Искусственный камень</h2>
-                            <span class="katalog_desc">Описание искусственный камень</span>
-                            <div class="mat_triggers"></div>
+                            <span class="katalog_desc">Искусственный камень — это сочетание неограниченных дизайнерских возможностей и визуальной привлекательности, удивительных цветовых решений и совершенных форм, исключительной практичности и неприхотливости в уходе. Это безграничные возможности создания красивых, бесшовных поверхностей необычной конфигурации с причудливыми изгибами и декоративной отделкой краев. По качественным и прочностным параметрам этому материалу нет конкурентов.</span>
+                            <span class="katalog_desc">Среди явных достоинств можно выделить следующие:<br/>
+                                - возможность реализации любых дизайнерских идей<br />
+                                - не выцветает под воздействием солнечных лучей<br />
+                                - устойчивость к ультрафиолетовым и  химическим воздействиям<br />
+                                - благодаря непористому основанию и полному отсутствию микротрещин, исключена возможность развития пагубной среды для человека<br />
+                                - высокая прочность и долговечность обусловлены особой технологией производства<br />
+                                - легкость реставрации
+                            </span>
                         </div>
                     </div>
                     <div id="tab-mat-3-3">
@@ -734,18 +756,24 @@
                                 <i class="next_3_3 x_next_2"></i>
                                 <i class="prev_3_3 x_prev_2"></i>
                                 <div class="slider_3_3">
-                                    <div class="slide_item">
-                                        <div class="slide3">
-                                            <img src="/wp-content/uploads/2016/05/32561848__2.jpg" />
-                                        </div>
-                                    </div>
+                                    @{
+                                        path = "/Content/images/gallery2/stol/kvarz/";
+                                        filenames = Directory.GetFiles(Server.MapPath(path), "*.jpg").OrderBy(f => f);
+                                        foreach (var filename in filenames)
+                                        {
+                                            Helpers.Resizer.Proceed(filename);
+                                            <div class="slide_item"><div class="slide3"><img src="@(path + Path.GetFileName(filename))" /></div></div>
+                                        }
+                                    }
                                 </div>
                             </div>
                         </article>
                         <div class="mat_right">
                             <h2 class="mat_slide_head">Кварцевый агломерат (кварцелан)</h2>
-                            <span class="katalog_desc">Описание кварцевый агломерат (кварцелан)</span>
-                            <div class="mat_triggers"></div>
+                            <span class="katalog_desc">Кварцевый камень  является композитным материалом, производимым из натурального природного кварца (91%-93%) и связующего его акрилового полимера (7%-9%).</span>
+                            <span class="katalog_desc">Кварц относится к твердым материалам, соответственно кварцевые столешницы обладают высокой прочностью. Установив на кухне такую столешницу, можно быть уверенными в том, что столешница из кварца прослужит не меньше двадцати лет.</span>
+                            <span class="katalog_desc">Внешний вид столешницы совершенно не меняется из-за кратковременного влияния высоких и низких температур, при этом, она не выцветает и не деформируется. Кварцевый камень относится к абсолютно нетоксичным, безвредным и экологичным материалам.</span>
+                            <span class="katalog_desc">По достоинству красота агломерированного кварца не уступает камню, созданному природой на протяжении миллионов лет.</span>
                         </div>
                     </div>                    
                 </div>
