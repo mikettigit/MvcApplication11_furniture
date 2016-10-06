@@ -1,5 +1,6 @@
 ﻿@{
     ViewBag.Title = "Мебель НЕКСТ";
+    var picturesSearchPattern = new System.Text.RegularExpressions.Regex(@"$(?<=\.(jpg|png|jpeg))", System.Text.RegularExpressions.RegexOptions.IgnoreCase);
 }
 
 <div class="bg_text_favorit">
@@ -120,7 +121,7 @@
                                 <div class="slider1__in1">
                                     @{
                                         string path = "/Content/images/gallery/kuhni/klassika/";
-                                        var filenames = Directory.GetFiles(Server.MapPath(path), "*.jpg").OrderBy(f => f);
+                                        var filenames = Directory.GetFiles(Server.MapPath(path)).Where(f => picturesSearchPattern.IsMatch(f)).OrderBy(f => f);
                                         foreach (var filename in filenames)
                                         {
                                             Helpers.Resizer.Proceed(filename);
@@ -146,9 +147,28 @@
                         <div class="mat_right">
                             <h2 class="mat_slide_head">Классика</h2>
 
-                            <span class="katalog_desc">Классические кухни наделены особым очарованием, они красивы, удобны и функциональны, при этом неплохо вписываются в интерьер маленькой квартиры, не говоря про городской коттедж или загородный дом.</span>
-                            <span class="katalog_desc">Классике присуща симметрия во всём, поэтому на Вашей классической кухне должны преобладать прямоугольные строгие формы и чёткие прямые линии. Центром симметрии, как правило, является плита, которая оформляется в виде камина.</span>
+                            @{
+                                string s = "";
+                                string contentfilepath = Server.MapPath(path) + "content.txt";
+                                if (File.Exists(contentfilepath))
+                                {
+                                    s = System.IO.File.ReadAllText(contentfilepath).Replace("\n", "<br/>").Replace(" ", "&#32;").Replace("\t", "&nbsp;&nbsp;&nbsp;&nbsp;");
+                                }
+                            }
 
+                            @if (s.IsEmpty())
+                            {
+                                <span class="katalog_desc">Классические кухни наделены особым очарованием, они красивы, удобны и функциональны, при этом неплохо вписываются в интерьер маленькой квартиры, не говоря про городской коттедж или загородный дом.</span>
+                                <span class="katalog_desc">Классике присуща симметрия во всём, поэтому на Вашей классической кухне должны преобладать прямоугольные строгие формы и чёткие прямые линии. Центром симметрии, как правило, является плита, которая оформляется в виде камина.</span>
+                            }
+                            else
+                            {
+                                <span class="katalog_desc">
+                                    @Html.Raw(s)
+                                </span>
+                            }
+
+                            
                             <div id="button2">
                                 <a onclick="$('input:hidden[name=page-name-2]').val($(this).parents('.mat_right').find('h2').text());" class="open-call-back-popup fon3" href="#">Расчет стоимости</a>
                             </div>
@@ -163,7 +183,7 @@
                                 <div class="slider1__in2">
                                     @{
                                         path = "/Content/images/gallery/kuhni/modern/";
-                                        filenames = Directory.GetFiles(Server.MapPath(path), "*.jpg").OrderBy(f => f);
+                                        filenames = Directory.GetFiles(Server.MapPath(path)).Where(f => picturesSearchPattern.IsMatch(f)).OrderBy(f => f);
                                         foreach (var filename in filenames)
                                         {
                                             Helpers.Resizer.Proceed(filename);
@@ -189,9 +209,28 @@
                         <div class="mat_right">
                             <h2 class="mat_slide_head">Модерн</h2>
 
-                            <span class="katalog_desc">Мебель в стиле «Модерн» отличают чистые линии, яркие цвета, нестандартные решения. Такие кухни иногда называют инновационными, потому что при их создании используют самые новые материалы и технологии.</span>
-                            <span class="katalog_desc">Продуманность и рациональность модерна делает его уместным в кухне любой площади. Современная эклектика, желание брать из каждого стиля лучшее и воплощать его в рамках одной кухни — это и есть кухня в стиле «Модерн».</span>
+                            @{
+                                s = "";
+                                contentfilepath = Server.MapPath(path) + "content.txt";
+                                if (File.Exists(contentfilepath))
+                                {
+                                    s = System.IO.File.ReadAllText(contentfilepath).Replace("\n", "<br/>").Replace(" ", "&#32;").Replace("\t", "&nbsp;&nbsp;&nbsp;&nbsp;");
+                                }
+                            }
 
+                            @if (s.IsEmpty())
+                            {
+                                <span class="katalog_desc">Мебель в стиле «Модерн» отличают чистые линии, яркие цвета, нестандартные решения. Такие кухни иногда называют инновационными, потому что при их создании используют самые новые материалы и технологии.</span>
+                                <span class="katalog_desc">Продуманность и рациональность модерна делает его уместным в кухне любой площади. Современная эклектика, желание брать из каждого стиля лучшее и воплощать его в рамках одной кухни — это и есть кухня в стиле «Модерн».</span>
+                            }
+                            else
+                            {
+                                <span class="katalog_desc">
+                                    @Html.Raw(s)
+                                </span>
+                            }
+
+                            
                             <div id="button2">
                                 <a onclick="$('input:hidden[name=page-name-2]').val($(this).parents('.mat_right').find('h2').text());" class="open-call-back-popup fon3" href="#">Расчет стоимости</a>
                             </div>
@@ -207,7 +246,7 @@
                                 <div class="slider1__in3">
                                     @{
                                         path = "/Content/images/gallery/kuhni/vintaj/";
-                                        filenames = Directory.GetFiles(Server.MapPath(path), "*.jpg").OrderBy(f => f);
+                                        filenames = Directory.GetFiles(Server.MapPath(path)).Where(f => picturesSearchPattern.IsMatch(f)).OrderBy(f => f);
                                         foreach (var filename in filenames)
                                         {
                                             Helpers.Resizer.Proceed(filename);
@@ -233,9 +272,27 @@
                         <div class="mat_right">
                             <h2 class="mat_slide_head">Винтаж</h2>
 
-                            <span class="katalog_desc">Стиль «Винтаж» визуально довольно прост, но все же есть в его оформлении нечто такое, что непременно цепляет душу. Возможно, таким своего рода якорем является светлая палитра и простоватые шкафы с претензией на классику с филенками и скромными резными вставками. Как бы там ни было, а смотреть, и тем более находиться на кухне в стиле «Винтаж» очень приятно.</span>
-                            <span class="katalog_desc">Наиболее подходящими оттенками для винтажной кухни считаются светлые пастельные тона, такие как бежевые, белые, карамельные, серые, нежно-голубые, лавандовые, салатные и бледно-розовые.</span>
+                            @{
+                                s = "";
+                                contentfilepath = Server.MapPath(path) + "content.txt";
+                                if (File.Exists(contentfilepath))
+                                {
+                                    s = System.IO.File.ReadAllText(contentfilepath).Replace("\n", "<br/>").Replace(" ", "&#32;").Replace("\t", "&nbsp;&nbsp;&nbsp;&nbsp;");
+                                }
+                            }
 
+                            @if (s.IsEmpty())
+                            {
+                                <span class="katalog_desc">Стиль «Винтаж» визуально довольно прост, но все же есть в его оформлении нечто такое, что непременно цепляет душу. Возможно, таким своего рода якорем является светлая палитра и простоватые шкафы с претензией на классику с филенками и скромными резными вставками. Как бы там ни было, а смотреть, и тем более находиться на кухне в стиле «Винтаж» очень приятно.</span>
+                                <span class="katalog_desc">Наиболее подходящими оттенками для винтажной кухни считаются светлые пастельные тона, такие как бежевые, белые, карамельные, серые, нежно-голубые, лавандовые, салатные и бледно-розовые.</span>
+                            }
+                            else
+                            {
+                                <span class="katalog_desc">
+                                    @Html.Raw(s)
+                                </span>
+                            }
+                            
                             <div id="button2">
                                 <a onclick="$('input:hidden[name=page-name-2]').val($(this).parents('.mat_right').find('h2').text());" class="open-call-back-popup fon3" href="#">Расчет стоимости</a>
                             </div>
@@ -251,7 +308,7 @@
                                 <div class="slider1__in4">
                                     @{
                                         path = "/Content/images/gallery/kuhni/hitec/";
-                                        filenames = Directory.GetFiles(Server.MapPath(path), "*.jpg").OrderBy(f => f);
+                                        filenames = Directory.GetFiles(Server.MapPath(path)).Where(f => picturesSearchPattern.IsMatch(f)).OrderBy(f => f);
                                         foreach (var filename in filenames)
                                         {
                                             Helpers.Resizer.Proceed(filename);
@@ -277,9 +334,27 @@
                         <div class="mat_right">
                             <h2 class="mat_slide_head">Хайтек</h2>
 
-                            <span class="katalog_desc">Хай-тек относят к ультрасовременным стилям. Стилю характерны стремительные, прямые линии, обилие стеклянных и металлических деталей.</span>
-                            <span class="katalog_desc">Материалы – стекло, металл, натуральное дерево. Формы и пропорции мебели тщательно продуманы. Полное отсутствие украшений компенсируется «работой» материала: игрой света на стекле, блеском хромированных и металлических поверхностей политурой древесины и т.д.</span>
+                            @{
+                                s = "";
+                                contentfilepath = Server.MapPath(path) + "content.txt";
+                                if (File.Exists(contentfilepath))
+                                {
+                                    s = System.IO.File.ReadAllText(contentfilepath).Replace("\n", "<br/>").Replace(" ", "&#32;").Replace("\t", "&nbsp;&nbsp;&nbsp;&nbsp;");
+                                }
+                            }
 
+                            @if (s.IsEmpty())
+                            {
+                                <span class="katalog_desc">Хай-тек относят к ультрасовременным стилям. Стилю характерны стремительные, прямые линии, обилие стеклянных и металлических деталей.</span>
+                                <span class="katalog_desc">Материалы – стекло, металл, натуральное дерево. Формы и пропорции мебели тщательно продуманы. Полное отсутствие украшений компенсируется «работой» материала: игрой света на стекле, блеском хромированных и металлических поверхностей политурой древесины и т.д.</span>
+                            }
+                            else
+                            {
+                                <span class="katalog_desc">
+                                    @Html.Raw(s)
+                                </span>
+                            }
+                            
                             <div id="button2">
                                 <a onclick="$('input:hidden[name=page-name-2]').val($(this).parents('.mat_right').find('h2').text());" class="open-call-back-popup fon3" href="#">Расчет стоимости</a>
                             </div>
@@ -329,7 +404,7 @@
                                 <div class="slider2__in1">
                                     @{
                                         path = "/Content/images/gallery/kupe/";
-                                        filenames = Directory.GetFiles(Server.MapPath(path), "*.jpg").OrderBy(f => f);
+                                        filenames = Directory.GetFiles(Server.MapPath(path)).Where(f => picturesSearchPattern.IsMatch(f)).OrderBy(f => f);
                                         foreach (var filename in filenames)
                                         {
                                             Helpers.Resizer.Proceed(filename);
@@ -355,12 +430,30 @@
                         <div class="mat_right">
                             <h2 class="mat_slide_head">Шкафы-купе</h2>
 
+                            @{
+                                s = "";
+                                contentfilepath = Server.MapPath(path) + "content.txt";
+                                if (File.Exists(contentfilepath))
+                                {
+                                    s = System.IO.File.ReadAllText(contentfilepath).Replace("\n", "<br/>").Replace(" ", "&#32;").Replace("\t", "&nbsp;&nbsp;&nbsp;&nbsp;");
+                                }
+                            }
+
+                            @if (s.IsEmpty())
+                            {
                             <span class="katalog_desc">
                                 Шкафы-купе на заказ пользуются особой популярностью и имеют массу приоритетов. Такие шкафы незаменимы для малогабаритных жилищ.
                             </span>
                             <span class="katalog_desc">
                                 С помощью такого шкафа можно разделить комнату или квартиру студийного типа на функциональные зоны. При этом легко создать иллюзию изолированности помещения - например, одна из отодвигающихся дверей может стать проходом в другую зону.
                             </span>
+                            }
+                            else
+                            {
+                                <span class="katalog_desc">
+                                    @Html.Raw(s)
+                                </span>
+                            }
 
                             <div class="mat_triggers">
                             </div>
@@ -394,7 +487,7 @@
                                 <div class="slider3__in1">
                                     @{
                                         path = "/Content/images/gallery/detskie/";
-                                        filenames = Directory.GetFiles(Server.MapPath(path), "*.jpg").OrderBy(f => f);
+                                        filenames = Directory.GetFiles(Server.MapPath(path)).Where(f => picturesSearchPattern.IsMatch(f)).OrderBy(f => f);
                                         foreach (var filename in filenames)
                                         {
                                             Helpers.Resizer.Proceed(filename);
@@ -422,11 +515,29 @@
                         <div class="mat_right">
                             <h2 class="mat_slide_head">Детские</h2>
 
-                            <span class="katalog_desc">
-                                Детская комната — помещение многофункциональное, включает в себя все зоны, необходимые для организации быта детей: спальную зону, рабочее место, систему хранения, игровую зону.
-                            </span>
-                            <span class="katalog_desc">Такое разделение поможет обозначить ребёнку, где и чем нужно заниматься в его комнате.</span>
+                            @{
+                                s = "";
+                                contentfilepath = Server.MapPath(path) + "content.txt";
+                                if (File.Exists(contentfilepath))
+                                {
+                                    s = System.IO.File.ReadAllText(contentfilepath).Replace("\n", "<br/>").Replace(" ", "&#32;").Replace("\t", "&nbsp;&nbsp;&nbsp;&nbsp;");
+                                }
+                            }
 
+                            @if (s.IsEmpty())
+                            {
+                                <span class="katalog_desc">
+                                    Детская комната — помещение многофункциональное, включает в себя все зоны, необходимые для организации быта детей: спальную зону, рабочее место, систему хранения, игровую зону.
+                                </span>
+                                <span class="katalog_desc">Такое разделение поможет обозначить ребёнку, где и чем нужно заниматься в его комнате.</span>
+                            }
+                            else
+                            {
+                                <span class="katalog_desc">
+                                    @Html.Raw(s)
+                                </span>
+                            }
+                            
                             <div class="mat_triggers">
                             </div>
 
@@ -461,7 +572,7 @@
                                 <div class="slider4__in1">
                                     @{
                                         path = "/Content/images/gallery/gostinye/";
-                                        filenames = Directory.GetFiles(Server.MapPath(path), "*.jpg").OrderBy(f => f);
+                                        filenames = Directory.GetFiles(Server.MapPath(path)).Where(f => picturesSearchPattern.IsMatch(f)).OrderBy(f => f);
                                         foreach (var filename in filenames)
                                         {
                                             Helpers.Resizer.Proceed(filename);
@@ -487,9 +598,27 @@
                         <div class="mat_right">
                             <h2 class="mat_slide_head">Гостиные</h2>
 
+                            @{
+                                s = "";
+                                contentfilepath = Server.MapPath(path) + "content.txt";
+                                if (File.Exists(contentfilepath))
+                                {
+                                    s = System.IO.File.ReadAllText(contentfilepath).Replace("\n", "<br/>").Replace(" ", "&#32;").Replace("\t", "&nbsp;&nbsp;&nbsp;&nbsp;");
+                                }
+                            }
+
+                            @if (s.IsEmpty())
+                            {
                             <span class="katalog_desc">Гостиная — комната, с которой начинается знакомство с вашим домом или квартирой. </span>
                             <span class="katalog_desc">Что представляет собой стильная гостиная в понимании современного человека? Помимо яркого дизайна, высокого качества составляющих материалов и фурнитуры такая корпусная мебель отличается хорошей функциональностью и соответствием новейшим прогрессивным достижениям и дизайнерским направлениям.</span>
-
+                            }
+                            else
+                            {
+                                <span class="katalog_desc">
+                                    @Html.Raw(s)
+                                </span>
+                            }
+                            
                             <div class="mat_triggers">
                             </div>
 
@@ -538,7 +667,7 @@
                                 <div class="slider_1_1">
                                     @{
                                         path = "/Content/images/gallery2/korpus/";
-                                        filenames = Directory.GetFiles(Server.MapPath(path), "*.jpg").OrderBy(f => f);
+                                        filenames = Directory.GetFiles(Server.MapPath(path)).Where(f => picturesSearchPattern.IsMatch(f)).OrderBy(f => f);
                                         foreach (var filename in filenames)
                                         {
                                             Helpers.Resizer.Proceed(filename);
@@ -551,20 +680,37 @@
 
                         <div class="mat_right">
                             <h2 class="mat_slide_head">Корпус изделия</h2>
+                            @{
+                                s = "";
+                                contentfilepath = Server.MapPath(path) + "content.txt";
+                                if (File.Exists(contentfilepath))
+                                {
+                                    s = System.IO.File.ReadAllText(contentfilepath).Replace("\n", "<br/>").Replace(" ", "&#32;").Replace("\t", "&nbsp;&nbsp;&nbsp;&nbsp;");
+                                }
+                            }
 
-                            <span class="katalog_desc">Корпус практически всей корпусной мебели выполняется из ламинированной плиты.</span>
-                            <span class="katalog_desc">ЛДСП – это древесная стружка крупной дисперсии, которой придается листовая форма с помощью горячего прессования. </span>
-                            <span class="katalog_desc">Ассортимент расцветок ламинированных плит очень обширен и включает в себя целые коллекции декоров ЛДСП. Цвета подразделяются на несколько групп:<br/>
-                                    - гладкие  однотонные (белый, желтый, голубой);<br />
-                                    - текстурные  однотонные (белый текстурный, алюминий);<br />
-                                    - стандартные древесные тона (бук, ольха, вишня и т.д.);<br />
-                                    - имитация редких пород дерева глянцевые декоры;<br />
-                                    - шпонированные декоры;<br />
-                                    - фантазийные тона с рисунками и узорами.<br />
-                            </span>
-                            <span class="katalog_desc">Торец ламинированной плиты обрабатывается специальной кромкой ПВХ.</span>
-                            <span class="katalog_desc">Кромка ПВХ отличается высокой степенью долговечности и износоустойчивости. Надежно защищает торцы от воздействия влажности и механических повреждений. Такая кромка устойчива к воздействию щелочи, кислоты, жира и солевого раствора, а также к возгоранию.</span>
-
+                            @if (s.IsEmpty())
+                            {
+                                <span class="katalog_desc">Корпус практически всей корпусной мебели выполняется из ламинированной плиты.</span>
+                                <span class="katalog_desc">ЛДСП – это древесная стружка крупной дисперсии, которой придается листовая форма с помощью горячего прессования. </span>
+                                <span class="katalog_desc">Ассортимент расцветок ламинированных плит очень обширен и включает в себя целые коллекции декоров ЛДСП. Цвета подразделяются на несколько групп:<br/>
+                                        - гладкие  однотонные (белый, желтый, голубой);<br />
+                                        - текстурные  однотонные (белый текстурный, алюминий);<br />
+                                        - стандартные древесные тона (бук, ольха, вишня и т.д.);<br />
+                                        - имитация редких пород дерева глянцевые декоры;<br />
+                                        - шпонированные декоры;<br />
+                                        - фантазийные тона с рисунками и узорами.<br />
+                                </span>
+                                <span class="katalog_desc">Торец ламинированной плиты обрабатывается специальной кромкой ПВХ.</span>
+                                <span class="katalog_desc">Кромка ПВХ отличается высокой степенью долговечности и износоустойчивости. Надежно защищает торцы от воздействия влажности и механических повреждений. Такая кромка устойчива к воздействию щелочи, кислоты, жира и солевого раствора, а также к возгоранию.</span>
+                            }
+                            else
+                            {
+                                <span class="katalog_desc">
+                                    @Html.Raw(s)
+                                </span>
+                            }
+                            
                         </div>
                     </div>
                     
@@ -582,7 +728,7 @@
                                 <div class="slider_2_1">
                                         @{
                                             path = "/Content/images/gallery2/fasad/plastik/";
-                                            filenames = Directory.GetFiles(Server.MapPath(path), "*.jpg").OrderBy(f => f);
+                                            filenames = Directory.GetFiles(Server.MapPath(path)).Where(f => picturesSearchPattern.IsMatch(f)).OrderBy(f => f);
                                             foreach (var filename in filenames)
                                             {
                                                 Helpers.Resizer.Proceed(filename);
@@ -594,11 +740,30 @@
                         </article>
                         <div class="mat_right">
                             <h2 class="mat_slide_head">Пластик</h2>
-                            <span class="katalog_desc">Пластиковые  мебельные фасады стали по - истине народными, т.к. являются не дорогим, но очень практичным решением мебельного вопроса. </span>
-                            <span class="katalog_desc">Торцы  пластиковых фасадов обрабатываются  кромкой ПВХ или алюминиевым профилем.</span>
-                            <span class="katalog_desc">ПВХ-кромка может стать ярким акцентом, повторяя цвет столешницы, текстиля или фартука, а также может сочетаться с другими деталями интерьера.</span>
-                            <span class="katalog_desc">Алюминиевый профиль не обладает широкой цветовой гаммой, но является более долговечным материалом.</span>
-                            <span class="katalog_desc">Пластиковые фасады не утратят  свой блеск и цвет через годы активной эксплуатации,  не выгорят на солнце, не деформируется от влаги, жары и холода.</span>
+                            @{
+                                s = "";
+                                contentfilepath = Server.MapPath(path) + "content.txt";
+                                if (File.Exists(contentfilepath))
+                                {
+                                    s = System.IO.File.ReadAllText(contentfilepath).Replace("\n", "<br/>").Replace(" ", "&#32;").Replace("\t", "&nbsp;&nbsp;&nbsp;&nbsp;");
+                                }
+                            }
+
+                            @if (s.IsEmpty())
+                            {
+                                <span class="katalog_desc">Пластиковые  мебельные фасады стали по - истине народными, т.к. являются не дорогим, но очень практичным решением мебельного вопроса. </span>
+                                <span class="katalog_desc">Торцы  пластиковых фасадов обрабатываются  кромкой ПВХ или алюминиевым профилем.</span>
+                                <span class="katalog_desc">ПВХ-кромка может стать ярким акцентом, повторяя цвет столешницы, текстиля или фартука, а также может сочетаться с другими деталями интерьера.</span>
+                                <span class="katalog_desc">Алюминиевый профиль не обладает широкой цветовой гаммой, но является более долговечным материалом.</span>
+                                <span class="katalog_desc">Пластиковые фасады не утратят  свой блеск и цвет через годы активной эксплуатации,  не выгорят на солнце, не деформируется от влаги, жары и холода.</span>
+                            }
+                            else
+                            {
+                                <span class="katalog_desc">
+                                    @Html.Raw(s)
+                                </span>
+                            }
+                            
                             <div class="mat_triggers"></div>
                         </div>
                     </div>
@@ -608,17 +773,40 @@
                                 <i class="next_2_2 x_next_2"></i>
                                 <i class="prev_2_2 x_prev_2"></i>
                                 <div class="slider_2_2">
-                                    <div class="slide_item">
-                                        <div class="slide3">
-                                            <img src="/wp-content/uploads/2016/05/5.png" />
-                                        </div>
-                                    </div>
+                                        @{
+                                            path = "/Content/images/gallery2/fasad/emal/";
+                                            filenames = Directory.GetFiles(Server.MapPath(path)).Where(f => picturesSearchPattern.IsMatch(f)).OrderBy(f => f);
+                                            foreach (var filename in filenames)
+                                            {
+                                                Helpers.Resizer.Proceed(filename);
+                                                <div class="slide_item"><div class="slide3"><img src="@(path + Path.GetFileName(filename))" /></div></div>
+                                            }
+                                        }
                                 </div>
                             </div>
                         </article>
                         <div class="mat_right">
                             <h2 class="mat_slide_head">Эмаль</h2>
-                            <span class="katalog_desc">Описание эмаль</span>
+                            @{
+                                s = "";
+                                contentfilepath = Server.MapPath(path) + "content.txt";
+                                if (File.Exists(contentfilepath))
+                                {
+                                    s = System.IO.File.ReadAllText(contentfilepath).Replace("\n", "<br/>").Replace(" ", "&#32;").Replace("\t", "&nbsp;&nbsp;&nbsp;&nbsp;");
+                                }
+                            }
+
+                            @if (s.IsEmpty())
+                            {
+                                <span class="katalog_desc">Описание эмаль</span>
+                            }
+                            else
+                            {
+                                <span class="katalog_desc">
+                                    @Html.Raw(s)
+                                </span>
+                            }
+                            
                             <div class="mat_triggers"></div>
                         </div>
                     </div>
@@ -628,17 +816,40 @@
                                 <i class="next_2_3 x_next_2"></i>
                                 <i class="prev_2_3 x_prev_2"></i>
                                 <div class="slider_2_3">
-                                    <div class="slide_item">
-                                        <div class="slide3">
-                                            <img src="/wp-content/uploads/2016/05/5.png" />
-                                        </div>
-                                    </div>
+                                    @{
+                                        path = "/Content/images/gallery2/fasad/plenka_pvh/";
+                                        filenames = Directory.GetFiles(Server.MapPath(path)).Where(f => picturesSearchPattern.IsMatch(f)).OrderBy(f => f);
+                                        foreach (var filename in filenames)
+                                        {
+                                            Helpers.Resizer.Proceed(filename);
+                                            <div class="slide_item"><div class="slide3"><img src="@(path + Path.GetFileName(filename))" /></div></div>
+                                        }
+                                    }
                                 </div>
                             </div>
                         </article>
                         <div class="mat_right">
                             <h2 class="mat_slide_head">Пленка ПВХ</h2>
-                            <span class="katalog_desc">Описание пленка ПВХ</span>
+                            @{
+                                s = "";
+                                contentfilepath = Server.MapPath(path) + "content.txt";
+                                if (File.Exists(contentfilepath))
+                                {
+                                    s = System.IO.File.ReadAllText(contentfilepath).Replace("\n", "<br/>").Replace(" ", "&#32;").Replace("\t", "&nbsp;&nbsp;&nbsp;&nbsp;");
+                                }
+                            }
+
+                            @if (s.IsEmpty())
+                            {
+                                <span class="katalog_desc">Описание пленка ПВХ</span>
+                            }
+                            else
+                            {
+                                <span class="katalog_desc">
+                                    @Html.Raw(s)
+                                </span>
+                            }
+                            
                             <div class="mat_triggers"></div>
                         </div>
                     </div>
@@ -648,17 +859,40 @@
                                 <i class="next_2_4 x_next_2"></i>
                                 <i class="prev_2_4 x_prev_2"></i>
                                 <div class="slider_2_4">
-                                    <div class="slide_item">
-                                        <div class="slide3">
-                                            <img src="/wp-content/uploads/2016/05/5.png" />
-                                        </div>
-                                    </div>
+                                    @{
+                                        path = "/Content/images/gallery2/fasad/massiv/";
+                                        filenames = Directory.GetFiles(Server.MapPath(path)).Where(f => picturesSearchPattern.IsMatch(f)).OrderBy(f => f);
+                                        foreach (var filename in filenames)
+                                        {
+                                            Helpers.Resizer.Proceed(filename);
+                                            <div class="slide_item"><div class="slide3"><img src="@(path + Path.GetFileName(filename))" /></div></div>
+                                        }
+                                    }
                                 </div>
                             </div>
                         </article>
                         <div class="mat_right">
                             <h2 class="mat_slide_head">Массив</h2>
-                            <span class="katalog_desc">Описание массив</span>
+                            @{
+                                s = "";
+                                contentfilepath = Server.MapPath(path) + "content.txt";
+                                if (File.Exists(contentfilepath))
+                                {
+                                    s = System.IO.File.ReadAllText(contentfilepath).Replace("\n", "<br/>").Replace(" ", "&#32;").Replace("\t", "&nbsp;&nbsp;&nbsp;&nbsp;");
+                                }
+                            }
+
+                            @if (s.IsEmpty())
+                            {
+                                <span class="katalog_desc">Описание массив</span>
+                            }
+                            else
+                            {
+                                <span class="katalog_desc">
+                                    @Html.Raw(s)
+                                </span>
+                            }
+                            
                             <div class="mat_triggers"></div>
                         </div>
                     </div>
@@ -667,25 +901,25 @@
                 <ul class="tab-mat-type-2 tab-mat-style">
                     <li>
                         <a href="#tab-mat-2-1">
-                            <i class="mat_img" style="background: url(/wp-content/uploads/2016/05/6-1.jpg) no-repeat"></i>
+                            <i class="mat_img" style="background: url(/Content/images/gallery2/fasad/plastik.jpg) no-repeat; "></i>
                             <span>Пластик</span>
                         </a>
                     </li>
                     <li>
                         <a href="#tab-mat-2-2">
-                            <i class="mat_img" style="background: url(/wp-content/uploads/2016/05/6-1.jpg) no-repeat"></i>
+                            <i class="mat_img" style="background: url(/Content/images/gallery2/fasad/emal.jpg) no-repeat"></i>
                             <span>Эмаль</span>
                         </a>
                     </li>
                     <li>
                         <a href="#tab-mat-2-3">
-                            <i class="mat_img" style="background: url(/wp-content/uploads/2016/05/6-1.jpg) no-repeat"></i>
+                            <i class="mat_img" style="background: url(/Content/images/gallery2/fasad/plenka_pvh.jpg) no-repeat; "></i>
                             <span>Пленка ПВХ</span>
                         </a>
                     </li>
                     <li>
                         <a href="#tab-mat-2-4">
-                            <i class="mat_img" style="background: url(/wp-content/uploads/2016/05/6-1.jpg) no-repeat"></i>
+                            <i class="mat_img" style="background: url(/Content/images/gallery2/fasad/massiv.jpg) no-repeat; "></i>
                             <span>Массив</span>
                         </a>
                     </li>
@@ -702,7 +936,7 @@
                                 <div class="slider_3_1">
                                     @{
                                         path = "/Content/images/gallery2/stol/plastik/";
-                                        filenames = Directory.GetFiles(Server.MapPath(path), "*.jpg").OrderBy(f => f);
+                                        filenames = Directory.GetFiles(Server.MapPath(path)).Where(f => picturesSearchPattern.IsMatch(f)).OrderBy(f => f);
                                         foreach (var filename in filenames)
                                         {
                                             Helpers.Resizer.Proceed(filename);
@@ -714,8 +948,26 @@
                         </article>
                         <div class="mat_right">
                             <h2 class="mat_slide_head">Пластик</h2>
-                            <span class="katalog_desc">Столешница из пластика – это, в первую очередь, практичность. Такое изделие совершенно не впитывает жидкости, обладает высокой химической устойчивостью, не боится механических повреждений и является абсолютно безопасной при контакте с пищевыми продуктами.</span>\
+                            @{
+                                s = "";
+                                contentfilepath = Server.MapPath(path) + "content.txt";
+                                if (File.Exists(contentfilepath))
+                                {
+                                    s = System.IO.File.ReadAllText(contentfilepath).Replace("\n", "<br/>").Replace(" ", "&#32;").Replace("\t", "&nbsp;&nbsp;&nbsp;&nbsp;");
+                                }
+                            }
+
+                            @if (s.IsEmpty())
+                            {
+                            <span class="katalog_desc">Столешница из пластика – это, в первую очередь, практичность. Такое изделие совершенно не впитывает жидкости, обладает высокой химической устойчивостью, не боится механических повреждений и является абсолютно безопасной при контакте с пищевыми продуктами.</span>
                             <span class="katalog_desc">Неоспоримое преимущество столешницы из пластика – дизайнерская вариативность, ведь существует множество оригинальных цветовых решений, декоров и фактур. Кроме того, эти кухонные поверхности отличаются низкой ценой, вследствие чего и получили столь широкое распространение.</span>
+                            }
+                            else
+                            {
+                                <span class="katalog_desc">
+                                    @Html.Raw(s)
+                                </span>
+                            }
                             <div class="mat_triggers"></div>
                         </div>
                     </div>
@@ -727,7 +979,7 @@
                                 <div class="slider_3_2">
                                     @{
                                         path = "/Content/images/gallery2/stol/kamen/";
-                                        filenames = Directory.GetFiles(Server.MapPath(path), "*.jpg").OrderBy(f => f);
+                                        filenames = Directory.GetFiles(Server.MapPath(path)).Where(f => picturesSearchPattern.IsMatch(f)).OrderBy(f => f);
                                         foreach (var filename in filenames)
                                         {
                                             Helpers.Resizer.Proceed(filename);
@@ -739,15 +991,33 @@
                         </article>
                         <div class="mat_right">
                             <h2 class="mat_slide_head">Искусственный камень</h2>
-                            <span class="katalog_desc">Искусственный камень — это сочетание неограниченных дизайнерских возможностей и визуальной привлекательности, удивительных цветовых решений и совершенных форм, исключительной практичности и неприхотливости в уходе. Это безграничные возможности создания красивых, бесшовных поверхностей необычной конфигурации с причудливыми изгибами и декоративной отделкой краев. По качественным и прочностным параметрам этому материалу нет конкурентов.</span>
+                            @{
+                                s = "";
+                                contentfilepath = Server.MapPath(path) + "content.txt";
+                                if (File.Exists(contentfilepath))
+                                {
+                                    s = System.IO.File.ReadAllText(contentfilepath).Replace("\n", "<br/>").Replace(" ", "&#32;").Replace("\t", "&nbsp;&nbsp;&nbsp;&nbsp;");
+                                }
+                            }
+
+                            @if (s.IsEmpty())
+                            {
+                            <span class="katalog_desc">Искусственный камень — это сочетание неограниченных дизайнерских возможностей , совершенных форм, исключительной практичности и неприхотливости в уходе. Это безграничные возможности создания красивых, бесшовных поверхностей необычной конфигурации с причудливыми изгибами.</span>
                             <span class="katalog_desc">Среди явных достоинств можно выделить следующие:<br/>
-                                - возможность реализации любых дизайнерских идей<br />
                                 - не выцветает под воздействием солнечных лучей<br />
                                 - устойчивость к ультрафиолетовым и  химическим воздействиям<br />
                                 - благодаря непористому основанию и полному отсутствию микротрещин, исключена возможность развития пагубной среды для человека<br />
                                 - высокая прочность и долговечность обусловлены особой технологией производства<br />
                                 - легкость реставрации
                             </span>
+                            }
+                            else
+                            {
+                                <span class="katalog_desc">
+                                    @Html.Raw(s)
+                                </span>
+                            }
+
                         </div>
                     </div>
                     <div id="tab-mat-3-3">
@@ -758,7 +1028,7 @@
                                 <div class="slider_3_3">
                                     @{
                                         path = "/Content/images/gallery2/stol/kvarz/";
-                                        filenames = Directory.GetFiles(Server.MapPath(path), "*.jpg").OrderBy(f => f);
+                                        filenames = Directory.GetFiles(Server.MapPath(path)).Where(f => picturesSearchPattern.IsMatch(f)).OrderBy(f => f);
                                         foreach (var filename in filenames)
                                         {
                                             Helpers.Resizer.Proceed(filename);
@@ -770,10 +1040,28 @@
                         </article>
                         <div class="mat_right">
                             <h2 class="mat_slide_head">Кварцевый агломерат (кварцелан)</h2>
+                            @{
+                                s = "";
+                                contentfilepath = Server.MapPath(path) + "content.txt";
+                                if (File.Exists(contentfilepath))
+                                {
+                                    s = System.IO.File.ReadAllText(contentfilepath).Replace("\n", "<br/>").Replace(" ", "&#32;").Replace("\t", "&nbsp;&nbsp;&nbsp;&nbsp;");
+                                }
+                            }
+
+                            @if (s.IsEmpty())
+                            {
                             <span class="katalog_desc">Кварцевый камень  является композитным материалом, производимым из натурального природного кварца (91%-93%) и связующего его акрилового полимера (7%-9%).</span>
                             <span class="katalog_desc">Кварц относится к твердым материалам, соответственно кварцевые столешницы обладают высокой прочностью. Установив на кухне такую столешницу, можно быть уверенными в том, что столешница из кварца прослужит не меньше двадцати лет.</span>
                             <span class="katalog_desc">Внешний вид столешницы совершенно не меняется из-за кратковременного влияния высоких и низких температур, при этом, она не выцветает и не деформируется. Кварцевый камень относится к абсолютно нетоксичным, безвредным и экологичным материалам.</span>
                             <span class="katalog_desc">По достоинству красота агломерированного кварца не уступает камню, созданному природой на протяжении миллионов лет.</span>
+                            }
+                            else
+                            {
+                                <span class="katalog_desc">
+                                    @Html.Raw(s)
+                                </span>
+                            }
                         </div>
                     </div>                    
                 </div>
@@ -781,19 +1069,19 @@
                 <ul class="tab-mat-type-3 tab-mat-style">
                     <li>
                         <a href="#tab-mat-3-1">
-                            <i class="mat_img" style="background: url(/wp-content/uploads/2016/05/789-1.jpg) no-repeat"></i>
+                            <i class="mat_img" style="background: url(/Content/images/gallery2/stol/plastik.jpg) no-repeat"></i>
                             <span>Пластик</span>
                         </a>
                     </li>
                     <li>
                         <a href="#tab-mat-3-2">
-                            <i class="mat_img" style="background: url(/wp-content/uploads/2016/05/789-1.jpg) no-repeat"></i>
+                            <i class="mat_img" style="background: url(/Content/images/gallery2/stol/kamen.jpg) no-repeat"></i>
                             <span>Искусственный камень</span>
                         </a>
                     </li>
                     <li>
                         <a href="#tab-mat-3-3">
-                            <i class="mat_img" style="background: url(/wp-content/uploads/2016/05/789-1.jpg) no-repeat"></i>
+                            <i class="mat_img" style="background: url(/Content/images/gallery2/stol/kvarz.jpg) no-repeat"></i>
                             <span>Кварцевый агломерат (кварцелан)</span>
                         </a>
                     </li>
@@ -810,7 +1098,7 @@
                                 <div class="slider_4_1">
                                     @{
                                         path = "/Content/images/gallery2/fartuk/plastik/";
-                                        filenames = Directory.GetFiles(Server.MapPath(path), "*.jpg").OrderBy(f => f);
+                                        filenames = Directory.GetFiles(Server.MapPath(path)).Where(f => picturesSearchPattern.IsMatch(f)).OrderBy(f => f);
                                         foreach (var filename in filenames)
                                         {
                                             Helpers.Resizer.Proceed(filename);
@@ -822,7 +1110,26 @@
                         </article>
                         <div class="mat_right">
                             <h2 class="mat_slide_head">Пластик на основе МДФ</h2>
-                            <span class="katalog_desc">Фартуки из пластика обладают оптимальным соотношением стоимости, практичности и качества. Они устойчивы к воздействию горячего пара и влаги. Их бесспорным достоинством является относительная дешевизна по сравнению с другими аналогами. </span>
+                            @{
+                                s = "";
+                                contentfilepath = Server.MapPath(path) + "content.txt";
+                                if (File.Exists(contentfilepath))
+                                {
+                                    s = System.IO.File.ReadAllText(contentfilepath).Replace("\n", "<br/>").Replace(" ", "&#32;").Replace("\t", "&nbsp;&nbsp;&nbsp;&nbsp;");
+                                }
+                            }
+
+                            @if (s.IsEmpty())
+                            {
+                                <span class="katalog_desc">Фартуки из пластика обладают оптимальным соотношением стоимости, практичности и качества. Они устойчивы к воздействию горячего пара и влаги. Их бесспорным достоинством является относительная дешевизна по сравнению с другими аналогами. </span>
+                            }
+                            else
+                            {
+                                <span class="katalog_desc">
+                                    @Html.Raw(s)
+                                </span>
+                            }
+                            
                             <div class="mat_triggers"></div>
                         </div>
                     </div>
@@ -835,7 +1142,7 @@
                                 <div class="slider_4_2">
                                     @{
                                         path = "/Content/images/gallery2/fartuk/steklo/";
-                                        filenames = Directory.GetFiles(Server.MapPath(path), "*.jpg").OrderBy(f => f);
+                                        filenames = Directory.GetFiles(Server.MapPath(path)).Where(f => picturesSearchPattern.IsMatch(f)).OrderBy(f => f);
                                         foreach (var filename in filenames)
                                         {
                                             Helpers.Resizer.Proceed(filename);
@@ -847,9 +1154,28 @@
                         </article>
                         <div class="mat_right">
                             <h2 class="mat_slide_head">Стекло с фотопечатью</h2>
-                            <span class="katalog_desc">Современные технологии фотопечати позволяют нанести на стекло любое изображение по вашему выбору.</span>
-                            <span class="katalog_desc">Уникальные по дизайну стеновые панели делают кухню по-настоящему индивидуальной. </span>
-                            <span class="katalog_desc">Они могут быть любыми: с монохромным тонким изящным графичным рисунком или с полноцветным фото, поражающими сочностью цветов и необычностью сюжета. </span>
+                            @{
+                                s = "";
+                                contentfilepath = Server.MapPath(path) + "content.txt";
+                                if (File.Exists(contentfilepath))
+                                {
+                                    s = System.IO.File.ReadAllText(contentfilepath).Replace("\n", "<br/>").Replace(" ", "&#32;").Replace("\t", "&nbsp;&nbsp;&nbsp;&nbsp;");
+                                }
+                            }
+
+                            @if (s.IsEmpty())
+                            {
+                                <span class="katalog_desc">Современные технологии фотопечати позволяют нанести на стекло любое изображение по вашему выбору.</span>
+                                <span class="katalog_desc">Уникальные по дизайну стеновые панели делают кухню по-настоящему индивидуальной. </span>
+                                <span class="katalog_desc">Они могут быть любыми: с монохромным тонким изящным графичным рисунком или с полноцветным фото, поражающими сочностью цветов и необычностью сюжета. </span>
+                            }
+                            else
+                            {
+                                <span class="katalog_desc">
+                                    @Html.Raw(s)
+                                </span>
+                            }
+                            
                             <div class="mat_triggers"></div>
                         </div>
                     </div>
@@ -862,7 +1188,7 @@
                                 <div class="slider_4_3">
                                     @{
                                         path = "/Content/images/gallery2/fartuk/kamen/";
-                                        filenames = Directory.GetFiles(Server.MapPath(path), "*.jpg").OrderBy(f => f);
+                                        filenames = Directory.GetFiles(Server.MapPath(path)).Where(f => picturesSearchPattern.IsMatch(f)).OrderBy(f => f);
                                         foreach (var filename in filenames)
                                         {
                                             Helpers.Resizer.Proceed(filename);
@@ -874,10 +1200,29 @@
                         </article>
                         <div class="mat_right">
                             <h2 class="mat_slide_head">Искусственный камень</h2>
-                            <span class="katalog_desc">Искусственному камню можно придать абсолютное сходство с любым природным: кварцем, ониксом, вулканическим туфом, мрамором и так далее. Точно так же можно выбрать для отделки материал с характерным «рисунком», но экзотичного цвета.</span>
-                            <span class="katalog_desc">
-                                Искусственный материал – низко пористый, а значит – не впитывает грязь и жир.
-                            </span>
+                            @{
+                                s = "";
+                                contentfilepath = Server.MapPath(path) + "content.txt";
+                                if (File.Exists(contentfilepath))
+                                {
+                                    s = System.IO.File.ReadAllText(contentfilepath).Replace("\n", "<br/>").Replace(" ", "&#32;").Replace("\t", "&nbsp;&nbsp;&nbsp;&nbsp;");
+                                }
+                            }
+
+                            @if (s.IsEmpty())
+                            {
+                               <span class="katalog_desc">Искусственному камню можно придать абсолютное сходство с любым природным: кварцем, ониксом, вулканическим туфом, мрамором и так далее. Точно так же можно выбрать для отделки материал с характерным «рисунком», но экзотичного цвета.</span>
+                               <span class="katalog_desc">
+                                   Искусственный материал – низко пористый, а значит – не впитывает грязь и жир.
+                               </span> 
+                            }
+                            else
+                            {
+                                <span class="katalog_desc">
+                                    @Html.Raw(s)
+                                </span>
+                            }
+                            
                             <div class="mat_triggers"></div>
                         </div>
                     </div>
@@ -890,7 +1235,7 @@
                                 <div class="slider_4_4">
                                     @{
                                         path = "/Content/images/gallery2/fartuk/mosaic/";
-                                        filenames = Directory.GetFiles(Server.MapPath(path), "*.jpg").OrderBy(f => f);
+                                        filenames = Directory.GetFiles(Server.MapPath(path)).Where(f => picturesSearchPattern.IsMatch(f)).OrderBy(f => f);
                                         foreach (var filename in filenames)
                                         {
                                             Helpers.Resizer.Proceed(filename);
@@ -902,7 +1247,26 @@
                         </article>
                         <div class="mat_right">
                             <h2 class="mat_slide_head">Мозаика</h2>
-                            <span class="katalog_desc">Фартуки из мозаики -  очень нарядный и выразительный вариант оформления стены на кухне. Мозаика сочных, контрастных цветов сделает интерьер ярким и динамичным. Тонкие переходы разных оттенков одной цветовой гаммы придадут кухне нежности и элегантности.</span>
+                            @{
+                                s = "";
+                                contentfilepath = Server.MapPath(path) + "content.txt";
+                                if (File.Exists(contentfilepath))
+                                {
+                                    s = System.IO.File.ReadAllText(contentfilepath).Replace("\n", "<br/>").Replace(" ", "&#32;").Replace("\t", "&nbsp;&nbsp;&nbsp;&nbsp;");
+                                }
+                            }
+
+                            @if (s.IsEmpty())
+                            {
+                                <span class="katalog_desc">Фартуки из мозаики -  очень нарядный и выразительный вариант оформления стены на кухне. Мозаика сочных, контрастных цветов сделает интерьер ярким и динамичным. Тонкие переходы разных оттенков одной цветовой гаммы придадут кухне нежности и элегантности.</span>
+                            }
+                            else
+                            {
+                                <span class="katalog_desc">
+                                    @Html.Raw(s)
+                                </span>
+                            }
+                            
                             <div class="mat_triggers"></div>
                         </div>
                     </div>
@@ -911,25 +1275,25 @@
                 <ul class="tab-mat-type-4 tab-mat-style">
                     <li>
                         <a href="#tab-mat-4-1">
-                            <i class="mat_img" style="background: url(/wp-content/uploads/2016/05/1111-1.jpg) no-repeat"></i>
+                            <i class="mat_img" style="background: url(/Content/images/gallery2/fartuk/plastik.jpg) no-repeat; "></i>
                             <span>Пластик на основе МДФ</span>
                         </a>
                     </li>
                     <li>
                         <a href="#tab-mat-4-2">
-                            <i class="mat_img" style="background: url(/wp-content/uploads/2016/05/1111-1.jpg) no-repeat"></i>
+                            <i class="mat_img" style="background: url(/Content/images/gallery2/fartuk/steklo.jpg) no-repeat; "></i>
                             <span>Стекло с фотопечатью</span>
                         </a>
                     </li>
                     <li>
                         <a href="#tab-mat-4-3">
-                            <i class="mat_img" style="background: url(/wp-content/uploads/2016/05/1111-1.jpg) no-repeat"></i>
+                            <i class="mat_img" style="background: url(/Content/images/gallery2/fartuk/kamen.jpg) no-repeat; "></i>
                             <span>Искусственный камень</span>
                         </a>
                     </li>
                     <li>
                         <a href="#tab-mat-4-4">
-                            <i class="mat_img" style="background: url(/wp-content/uploads/2016/05/1111-1.jpg) no-repeat"></i>
+                            <i class="mat_img" style="background: url(/Content/images/gallery2/fartuk/mosaic.jpg) no-repeat; "></i>
                             <span>Мозаика</span>
                         </a>
                     </li>
@@ -944,17 +1308,40 @@
                                 <i class="next_5_1 x_next_2"></i>
                                 <i class="prev_5_1 x_prev_2"></i>
                                 <div class="slider_5_1">
-                                    <div class="slide_item">
-                                        <div class="slide3">
-                                            <img src="/wp-content/uploads/2016/05/901.jpg" />
-                                        </div>
-                                    </div>
+                                    @{
+                                        path = "/Content/images/gallery2/furnitura/petli/";
+                                        filenames = Directory.GetFiles(Server.MapPath(path)).Where(f => picturesSearchPattern.IsMatch(f)).OrderBy(f => f);
+                                        foreach (var filename in filenames)
+                                        {
+                                            Helpers.Resizer.Proceed(filename);
+                                            <div class="slide_item"><div class="slide3"><img src="@(path + Path.GetFileName(filename))" /></div></div>
+                                        }
+                                    }
                                 </div>
                             </div>
                         </article>
                         <div class="mat_right">
                             <h2 class="mat_slide_head">Системы петель</h2>
-                            <span class="katalog_desc">Описание Системы петель</span>
+                            @{
+                                s = "";
+                                contentfilepath = Server.MapPath(path) + "content.txt";
+                                if (File.Exists(contentfilepath))
+                                {
+                                    s = System.IO.File.ReadAllText(contentfilepath).Replace("\n", "<br/>").Replace(" ", "&#32;").Replace("\t", "&nbsp;&nbsp;&nbsp;&nbsp;");
+                                }
+                            }
+
+                            @if (s.IsEmpty())
+                            {
+                                <span class="katalog_desc">Описание Системы петель</span>
+                            }
+                            else
+                            {
+                                <span class="katalog_desc">
+                                    @Html.Raw(s)
+                                </span>
+                            }
+                            
                             <div class="mat_triggers"></div>
                         </div>
                     </div>
@@ -965,17 +1352,40 @@
                                 <i class="next_5_2 x_next_2"></i>
                                 <i class="prev_5_2 x_prev_2"></i>
                                 <div class="slider_5_2">
-                                    <div class="slide_item">
-                                        <div class="slide3">
-                                            <img src="/wp-content/uploads/2016/05/901.jpg" />
-                                        </div>
-                                    </div>
+                                    @{
+                                        path = "/Content/images/gallery2/furnitura/podyemnye/";
+                                        filenames = Directory.GetFiles(Server.MapPath(path)).Where(f => picturesSearchPattern.IsMatch(f)).OrderBy(f => f);
+                                        foreach (var filename in filenames)
+                                        {
+                                            Helpers.Resizer.Proceed(filename);
+                                            <div class="slide_item"><div class="slide3"><img src="@(path + Path.GetFileName(filename))" /></div></div>
+                                        }
+                                    }
                                 </div>
                             </div>
                         </article>
                         <div class="mat_right">
                             <h2 class="mat_slide_head">Подъемные механизмы</h2>
-                            <span class="katalog_desc">Описание Подъемные механизмы</span>
+                            @{
+                                s = "";
+                                contentfilepath = Server.MapPath(path) + "content.txt";
+                                if (File.Exists(contentfilepath))
+                                {
+                                    s = System.IO.File.ReadAllText(contentfilepath).Replace("\n", "<br/>").Replace(" ", "&#32;").Replace("\t", "&nbsp;&nbsp;&nbsp;&nbsp;");
+                                }
+                            }
+
+                            @if (s.IsEmpty())
+                            {
+                                <span class="katalog_desc">Описание Подъемные механизмы</span>
+                            }
+                            else
+                            {
+                                <span class="katalog_desc">
+                                    @Html.Raw(s)
+                                </span>
+                            }
+                            
                             <div class="mat_triggers"></div>
                         </div>
                     </div>
@@ -986,17 +1396,40 @@
                                 <i class="next_5_3 x_next_2"></i>
                                 <i class="prev_5_3 x_prev_2"></i>
                                 <div class="slider_5_3">
-                                    <div class="slide_item">
-                                        <div class="slide3">
-                                            <img src="/wp-content/uploads/2016/05/901.jpg" />
-                                        </div>
-                                    </div>
+                                    @{
+                                        path = "/Content/images/gallery2/furnitura/boxes/";
+                                        filenames = Directory.GetFiles(Server.MapPath(path)).Where(f => picturesSearchPattern.IsMatch(f)).OrderBy(f => f);
+                                        foreach (var filename in filenames)
+                                        {
+                                            Helpers.Resizer.Proceed(filename);
+                                            <div class="slide_item"><div class="slide3"><img src="@(path + Path.GetFileName(filename))" /></div></div>
+                                        }
+                                    }
                                 </div>
                             </div>
                         </article>
                         <div class="mat_right">
                             <h2 class="mat_slide_head">Системы выдвижных ящиков</h2>
-                            <span class="katalog_desc">Описание Системы выдвижных ящиков</span>
+                            @{
+                                s = "";
+                                contentfilepath = Server.MapPath(path) + "content.txt";
+                                if (File.Exists(contentfilepath))
+                                {
+                                    s = System.IO.File.ReadAllText(contentfilepath).Replace("\n", "<br/>").Replace(" ", "&#32;").Replace("\t", "&nbsp;&nbsp;&nbsp;&nbsp;");
+                                }
+                            }
+
+                            @if (s.IsEmpty())
+                            {
+                                <span class="katalog_desc">Описание Системы выдвижных ящиков</span>
+                            }
+                            else
+                            {
+                                <span class="katalog_desc">
+                                    @Html.Raw(s)
+                                </span>
+                            }
+                            
                             <div class="mat_triggers"></div>
                         </div>
                     </div>
@@ -1007,17 +1440,39 @@
                                 <i class="next_5_4 x_next_2"></i>
                                 <i class="prev_5_4 x_prev_2"></i>
                                 <div class="slider_5_4">
-                                    <div class="slide_item">
-                                        <div class="slide3">
-                                            <img src="/wp-content/uploads/2016/05/901.jpg" />
-                                        </div>
-                                    </div>
+                                    @{
+                                        path = "/Content/images/gallery2/furnitura/hranenie/";
+                                        filenames = Directory.GetFiles(Server.MapPath(path)).Where(f => picturesSearchPattern.IsMatch(f)).OrderBy(f => f);
+                                        foreach (var filename in filenames)
+                                        {
+                                            Helpers.Resizer.Proceed(filename);
+                                            <div class="slide_item"><div class="slide3"><img src="@(path + Path.GetFileName(filename))" /></div></div>
+                                        }
+                                    }
                                 </div>
                             </div>
                         </article>
                         <div class="mat_right">
                             <h2 class="mat_slide_head">Системы хранения</h2>
-                            <span class="katalog_desc">Описание Системы хранения</span>
+                            @{
+                                s = "";
+                                contentfilepath = Server.MapPath(path) + "content.txt";
+                                if (File.Exists(contentfilepath)) {
+                                    s = System.IO.File.ReadAllText(contentfilepath).Replace("\n", "<br/>").Replace(" ", "&#32;").Replace("\t", "&nbsp;&nbsp;&nbsp;&nbsp;");
+                                }
+                            }
+                            
+                            @if (s.IsEmpty())
+                            {
+                                <span class="katalog_desc"></span>
+                            }
+                            else
+                            {
+                                <span class="katalog_desc">
+                                    @Html.Raw(s)
+                                </span>
+                            }
+                            
                             <div class="mat_triggers"></div>
                         </div>
                     </div>
@@ -1026,25 +1481,25 @@
                 <ul class="tab-mat-type-5 tab-mat-style">
                     <li>
                         <a href="#tab-mat-5-1">
-                            <i class="mat_img" style="background: url(/wp-content/uploads/2016/05/5252.jpg) no-repeat"></i>
+                            <i class="mat_img" style="background: url(/Content/images/gallery2/furnitura/petli.jpg) no-repeat; "></i>
                             <span>Системы петель</span>
                         </a>
                     </li>
                     <li>
                         <a href="#tab-mat-5-2">
-                            <i class="mat_img" style="background: url(/wp-content/uploads/2016/05/123123.jpg) no-repeat"></i>
+                            <i class="mat_img" style="background: url(/Content/images/gallery2/furnitura/podyemnye.jpg) no-repeat; "></i>
                             <span>Подъемные механизмы</span>
                         </a>
                     </li>
                     <li>
                         <a href="#tab-mat-5-3">
-                            <i class="mat_img" style="background: url(/wp-content/uploads/2016/05/123123.jpg) no-repeat"></i>
+                            <i class="mat_img" style="background: url(/Content/images/gallery2/furnitura/boxes.jpg) no-repeat"></i>
                             <span>Системы выдвижных ящиков</span>
                         </a>
                     </li>
                     <li>
                         <a href="#tab-mat-5-4">
-                            <i class="mat_img" style="background: url(/wp-content/uploads/2016/05/123123.jpg) no-repeat"></i>
+                            <i class="mat_img" style="background: url(/Content/images/gallery2/furnitura/hranenie.jpg) no-repeat"></i>
                             <span>Системы хранения</span>
                         </a>
                     </li>
@@ -1124,99 +1579,7 @@
 <div id="questions" class="second_slide">
     <div class="wrap">
         <h1 class="slide_head">Это актуально</h1>
-
-        <div id="accordion-container">
-            <h2 class="accordion-header">Что влияет на стоимость изделия?</h2>
-
-            <div class="accordion-content">
-                <p>Существует несколько факторов влияющих на конечную стоимость корпусной мебели. Рассмотрим на примере кухонного гарнитура:</p>
-                <p>
-                    <b>Размер.</b>
-                    <br/>
-                    Чем больше кухня тем она дороже. Зависимость стоимости от размера-линейная.
-                </p>
-
-                <p>
-                    <b>Материал из которого сделан фасад.</b>
-                    <br/>
-                    Самый не дорогой материал ДСП и МДФ-ПВХ (МДФ-ламинированная пленкой ПВХ) Это современный экологически чистый материал. Фасады с эмалевым покрытием (основа тоже МДФ) будут стоить на 10-15% дороже но зато цвета и оттенки такого покрытия имеют не ограниченное количество вариантов. Кухня с фасадом из массива будет стоить на 15-20% дороже чем, с фасадом МДФ ПВХ
-                </p>
-
-                <p>
-                    <b>Фурнитура.</b>
-                    <br />
-                    Можно использовать простую фурнитуру, а можно а можно наполнить кухню доводчиками, амортизаторами удара, выдвижными системами. Эти мелочи не будут видны внешне, но очень существенно повлияют на удобство и комфорт при использовании кухни. Разница в стоимости в зависимости от применяемой фурнитуры может достигать 10-15%
-                </p>
-
-                <p>
-                    <b>Столешница и ее толщина</b>
-                    <br />
-                    Самый распространенный материал столешниц-ламинированные столешницы. Они имеют два варианта толщины 28 и38мм. Столешница 38мм. толщиной дороже чем 28мм. На 10-15%. Столешницы из искусственного камня прочнее и более стойкие к химическому воздействию. Однако стоимость такой солешницы в разы больше чем ламинированной.
-                </p>
-
-                <p>
-                    <b>Наличие декоративных элементов.</b>
-                    <br />
-                    К элементам декора относятся: Перильца(балясинки),пилястры, подсветка, карнизы, витражи, зеркала, решетки, стеновая панель и многое другое. Использование декоративных элементов превратит да же самую не дорогую кухню в маленький шедевр.
-                </p>
-
-                <p>
-                    Учитывать все особенности и предпочтения, чтобы найти оптимальное для Вас соотношение между стоимостью, функциональностью  и красотой -  это и есть наша работа!
-                </p>
-
-</div>
-
-        </div>
-
-        <div id="accordion-container">
-            <h2 class="accordion-header">Когда заказывать мебель?</h2>
-
-            <div class="accordion-content">
-                <p>Кухню можно заказать на любом этапе – до начала, во время или после ремонта.</p>
-                <p>Когда заказывать кухонный гарнитур предстоит решить Вам, а мы расскажем плюсы и минусы покупки кухни на любом из этих этапов и, возможно, после прочтения Вам будет легче принять решение.</p>
-                <p>
-                    ЕСЛИ ВЫ РЕШИТЕ ЗАКАЗАТЬ КУХНЮ ПЕРЕД РЕМОНТОМ ИЛИ ВО ВРЕМЯ РЕМОНТА, ТО:
-                </p>
-                <p>
-                    Мы сделаем замеры того помещения, которое есть у Вас на данный момент. Оценим состояние стен, углов и оговорим с Вами качество предстоящего ремонта и возможное изменение размеров. С учётом этого и запланируем размеры кухонного гарнитура. Например, отнимем несколько сантиметров от длины стены на толщину кухонного фартука, выравнивание стен под уровень, выведение угла под 90 градусов, в общем на погрешность ремонта (или прибавим в зависимости от ситуации).
-                </p>
-                <p>
-                    Дизайнер даст рекомендации по размещению розеток и коммуникаций в зависимости от оптимального расположения бытовых приборов на кухне. В последствии, Вам не придётся переносить розетки и коммуникации, переделывать отверстие воздуховода или перекладывать плитку в нише для вытяжки. Ремонт Вы будете делать с учётом окончательного проекта мебели. Благодаря этому приобретете удобную кухню с расположением рабочей зоны и шкафов в соответствии с максимальной функциональностью и эргономикой кухонной мебели.
-                </p>
-                <p>
-                    Вам надо будет проконтролировать мастеров по ремонту, чтобы после ремонта стены были нужного для мебели размера, а розетки на своих местах.
-                </p>
-                <p>
-                    Вы сэкономите время и сможете быстрее, как минимум на месяц, пользоваться новой кухней. Срок изготовления кухни составляет в среднем около 3 – 6 недель (зависит от материала фасада). За это время Вы сделаете ремонт и сразу же, по его окончании, получите кухонный гарнитур.
-                </p>
-                
-                <br/>
-                <p>
-                    ЕСЛИ ВЫ РЕШИТЕ ЗАКАЗАТЬ КУХНЮ ПОСЛЕ РЕМОНТА, ТО:
-                </p>
-                <p>
-                    Дизайнер спроектирует мебель исходя из особенностей сделанного ремонта, расположения фартука, места для вытяжки и т.д.
-                </p>
-                <p>
-                    Наш специалист оценит готовность помещения к установке мебели, сделает замеры. Мы изготовим мебель исходя из точных размеров помещения и нюансов отделки стен.
-                </p>
-                <p>
-                    Возможно, Вам придется переносить или заглушить сделанные розетки. Чтобы избежать этого воспользуйтесь НАШЕЙ УСЛУГОЙ - ИНТЕРЬЕР ПОД КЛЮЧ (мы возьмем на себя все отделочные и декоративные работы вашего помещения с учетом всех нюансов установки будующей мебели)
-                </p>
-
-            </div>
-
-        </div>
-
-        <div id="accordion-container">
-            <h2 class="accordion-header">Есть готовый проект или понравилось фото корпусной мебели в интернете?</h2>
-
-            <div class="accordion-content">
-                <p>Сделаем любую корпусную мебель, которую вы найдете в интернете. Присылайте фотографии или рисунки, мебели которые вам нравятся а так же свои пожелания. Мы подготовим эскиз и посчитаем стоимость изготовления. Если у вас есть уже готовый проект то присылаете его нам для расчета стоимости.</p>
-            </div>
-
-        </div>
-
+        @Html.Partial("~/Views/Home/Controls/Questions.cshtml")
     </div>
 </div>
 
@@ -1578,6 +1941,20 @@
     timeout: 0,
     next: '.next_5_2',
     prev: '.prev_5_2'
+});
+    $('.slider_5_3')
+.cycle({
+    speed: 'slow',
+    timeout: 0,
+    next: '.next_5_3',
+    prev: '.prev_5_3'
+});
+    $('.slider_5_4')
+.cycle({
+    speed: 'slow',
+    timeout: 0,
+    next: '.next_5_4',
+    prev: '.prev_5_4'
 });
 </script>
 

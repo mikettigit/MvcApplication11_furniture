@@ -15,8 +15,14 @@ namespace Helpers.Controllers
         //
         // GET: /Home/
 
+        [OutputCache(Duration = int.MaxValue)]
         public ActionResult Index()
         {
+            //if (DateTime.Now > new DateTime(2016, 9, 15))
+            //{
+            //    string content = "Срок использования текущей версии истек";
+            //    return Content(content);
+            //}
             return View();
         }
 
